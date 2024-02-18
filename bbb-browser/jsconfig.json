@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "ES2020",
+    "checkJs": true
+  },
+  "include": [
+    ".",
+  ],
+  "exclude": [
+    "uno-app-1/*",
+  ]
+}

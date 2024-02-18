@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Bouncy Button Benchmark Browser</title>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- todo https://plotly.com/javascript/ribbon-plots/ -->
+    <script src="https://cdn.plot.ly/plotly-2.27.0.min.js" charset="utf-8"></script>
+
+    <!-- inline css -->
+    <style>
+        body {
+            background-color: #2f393d;
+            color: #e5e5e5;
+            font-family: system-ui;
+        }
+
+        textarea {
+            color: #bdbdbd;
+            background-color: #312f2f;
+        }
+
+        div.filter-option {
+            display: inline-block;
+            margin-right: 8px;
+            margin-bottom: 5px;
+            margin-top: 5px;
+            padding: 3px;
+            background-color: #2e7a86;
+            border-radius: 5px;
+        }
+
+        div.filter-option label {
+            padding: 3px;
+            user-select: none;
+        }
+
+        input[type='checkbox'] {
+            accent-color: #ffffff;
+        }
+
+        h1 {
+            margin-bottom: 0px;
+        }
+
+        /* css for a nice dark mode table */
+        table {
+            border-collapse: collapse;
+            /* width: 80%; */
+            color: #e5e5e5;
+        }
+
+        th, td {
+            border: 1px solid #e5e5e5;
+            padding: 8px 12px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #b3b3b3;
+            color: #1f1f1f;
+        }
+
+        tr:nth-child(even) {
+            background-color: #1f1f1f;
+        }
+
+        tr:nth-child(odd) {
+            background-color: #312f2f;
+        }
+
+        th.duration, td.duration {
+            text-align: right;
+        }
+
+
+    </style>
+
+</head>
+
+<body>
+    <h1 style="margin-top: 0px;"><span id="span-title"></span>Bouncy Button Benchmark Browser</h1>
+
+    <div id="div-input">
+        <p>Paste your data into the text area below and press the load button.</p>
+        <button onclick="loadData()" style="margin-top: 5px;" >Load Data</button><br>
+        <textarea id="user-data-text-input" style="width:700px;height:250px;">
+        </textarea>
+    </div>
+
+    <div id="div-display" style="display: none;">
+        <div style="margin-bottom: 4px;" id="session-description-outer">
+            <b>Session Description:</b>
+                <pre id="session-description-content"
+                style="margin: 0;
+                padding: 3px;
+                background-color: #3b444c;
+                display: table;
+                border: 1px solid black;
+                max-width: 70%;
+                white-space: pre-wrap;
+                "></pre>
+        </div>
+
+        <div id="session-stats">
+            <b>Test count: </b> <span id="loaded-data-test-count">0</span>,
+            <b>Total event count: </b> <span id="loaded-data-total-event-count">0</span>,
+            <b title="rough estimate">Total edge count: </b> <span id="loaded-data-total-edge-count">0</span>,
+            <b>Warnings: </b> <span id="loaded-data-warnings" style="color: #ffff21;">none</span>, 
+        </div>
+        <b>Section type: </b>
+    
+        <div id="section-controls" style="display: inline-block;">
+            <!-- checkbox for normal activations -->
+            <div class="filter-option" title="Normal pressing/releasing of button">
+                <label for="show-normal-activations">Normal Activations</label>
+                <input type="checkbox" id="show-normal-activations" name="show-normal-activations" value="show-normal-activations" checked>
+            </div>
+        
+            <!-- checkbox for show fast taps -->
+            <div class="filter-option">
+                <label for="show-fast-taps">Fast Taps</label>
+                <input type="checkbox" id="show-fast-taps" name="show-fast-taps" value="show-fast-taps">
+            </div>
+        
+            <!-- checkbox for show double presses -->
+            <div class="filter-option">
+                <label for="show-double-presses">Double Presses</label>
+                <input type="checkbox" id="show-double-presses" name="show-double-presses" value="show-double-presses">
+            </div>
+        
+            <!-- checkbox for show smack activations -->
+            <div class="filter-option" title="When a smack to button housing activates the button">
+                <label for="show-smack-activations">Smacks</label>
+                <input type="checkbox" id="show-smack-activations" name="show-smack-activations" value="show-smack-activations">
+            </div>
+
+        </div>
+    
+        <!-- <br> -->
+        <b>Event type: </b>
+        <!-- checkbox for show presses , #c32828-->
+        <div class="filter-option" style="background-color: #a10000;" title="When a button is pressed">
+            <label for="show-presses">Presses</label>
+            <input type="checkbox" id="show-presses" name="show-presses" value="show-presses" checked>
+        </div>
+    
+        <!-- checkbox for show releases #7f0707 -->
+        <div class="filter-option" style="background-color: #c32828;" title="When a button is released">
+            <label for="show-releases">Releases</label>
+            <input type="checkbox" id="show-releases" name="show-releases" value="show-releases" checked>
+        </div>
+    
+        <!-- group by none, section type, press/release -->
+        <b>Group by: </b>
+        <select id="group-by">
+            <option value="none">None</option>
+            <option value="section-type">Section Type</option>
+            <option value="press-release">Press/Release</option>
+        </select>
+    
+        <!-- sort by drop down for duration or test order -->
+        <b>Sort by: </b>
+        <select id="sort-by">
+            <option value="test-order">Test Order</option>
+            <option value="duration">Duration</option>
+            <option value="transition-count">Transitions</option>
+        </select>
+
+        <input type="text" id="focus-region-input" style="width: 75px;" placeholder="Time Focus" title="ex input: '900us - 915us'"/>
+        <input type="text" id="test-id-filter-input" style="width: 75px;" placeholder="Test ID Filter" title="ex input: '1,2-30,50-, ex 4 8-12'"/>
+        
+        <!-- buttons -->
+        <br>
+        <button onclick="decodeAndGraph()" style="margin-top: 5px;" >Graph & Analyze</button>
+        <button onclick="unloadData()" style="margin-top: 5px;" >Unload Data</button>
+    
+        <!-- <select id="display-mode">
+            <option value="all">Graphs &amp; Tables</option>
+            <option value="waterfall">Waterfall</option>
+            <option value="tables">Tables</option>
+        </select> -->
+
+        <div title="Show Waterfall Graph" style="display: inline-block;">
+            <label for="show-waterfall">Waterfall</label>
+            <input type="checkbox" id="show-waterfall" name="show-waterfall" value="show-waterfall" checked>
+        </div>
+
+        <div id="display-waterfall" style="display: none;">
+            <div id="waterfall-chart" style="margin-top: 8px; height:90vh;">
+            </div>
+        </div>
+
+        <div id="display-stats-graphs" style="margin-top: 8px;">
+            <div id="stats-press-release-durations" style="height:50vh"></div>
+            <div id="stats-press-release-longest-pulse-durations" style="height:50vh"></div>
+            <div id="stats-press-release-transitions" style="height:50vh"></div>
+        </div>
+        
+        <div id="display-table-data" style="margin-top: 8px; display: none;">
+            <!-- <h1>Table Data</h1> -->
+            <div id="table-data-inner">...</div>
+        </div>
+    
+        <!-- <h1>Statistics</h1>
+        <div id="statistics">TODO...</div> -->
+
+    </div>
+
+
+</body>
+
+<script src="purify.js"></script>
+<script src="Section.js"></script>
+<script src="LogEntry.js"></script>
+<script src="LevelRecord.js"></script>
+<script src="Test.js"></script>
+<script src="PlotlyTrace.js"></script>
+<script src="PressReleaseTraces.js"></script>
+<script src="TraceLineAndMarkers.js"></script>
+<script src="LevelTraces.js"></script>
+<script src="DataTableMaker.js"></script>
+
+<script src="TextToRecordParser.js"></script>
+<script src="RecordToLevelConverter.js"></script>
+<script src="Grapher.js"></script>
+<script src="BoxPlotter.js"></script>
+
+<script src="js.js"></script>   <!-- allows body to be loaded -->
+
+<script src="startingDataText.js"></script>
+
+<script>
+    document.getElementById('user-data-text-input').innerHTML = startingDataText;
+</script>
+
+</html>
