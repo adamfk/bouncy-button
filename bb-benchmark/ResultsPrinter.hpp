@@ -112,6 +112,11 @@ public:
 
     static uint32_t print_test_info(Section& section, StatsAndConfig& stats_config) {
         print_str("sw version: " VERSION_STR "\n");
+        
+        if (stats_config.internal_pullup == false) {
+            print_str("<internal_pullup_disabled/>\n");
+        }
+
         uint32_t duration_ns = ResultsPrinter::print_result_smarter(DataRecorder::g_entries, COUNT_OF(DataRecorder::g_entries), DataRecorder::g_stream_unstable_ms);
         print_str("section type: \""); Screen::print_section(section); print_str("\"\n");
         print_str("section count: "); print_raw(section.section_test_count); print_str("\n");

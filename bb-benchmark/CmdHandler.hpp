@@ -137,11 +137,11 @@ public:
                 print_str("\n</session_description>\n");
             } else if (a == 'e' && b == 'i' && c == 'p') {
                 print_str("Enabling internal pullup resistor.\n");
-                Periph::enable_pullup();
+                Periph::enable_pullup(stats_config);
                 result = CommandResult_SUCCESS;
             } else if (a == 'd' && b == 'i' && c == 'p') {
                 print_str("Disabling internal pullup resistor.\n");
-                Periph::disable_pullup();
+                Periph::disable_pullup(stats_config);
                 result = CommandResult_SUCCESS;
             }
         }

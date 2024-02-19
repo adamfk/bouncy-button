@@ -88,7 +88,7 @@ static StatsAndConfig stats_config;
 
 void setup() {
     Serial.begin(115200);
-    Periph::enable_pullup();
+    Periph::enable_pullup(stats_config);
     Periph::setup();
 
     if (DEBUG_TOGGLE_PIN_AT_SAMPLES || DEBUG_TOGGLE_PIN_AT_LOGS || DEBUG_TOGGLE_CUSTOM) {

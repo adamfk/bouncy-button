@@ -2,6 +2,7 @@
 #include "Arduino.h"
 #include <stdint.h>
 #include "defines.h"
+#include "Stats.h"
 
 class Periph {
     static uint8_t old_tccr0a;
@@ -190,11 +191,14 @@ class Periph {
         return hz;
     }
 
-    static void enable_pullup() {
+    static void enable_pullup(StatsAndConfig &stats_config) {
+        stats_config.internal_pullup = 1;
         pinMode(INPUT_PIN_NUMBER, INPUT_PULLUP);
     }
 
-    static void disable_pullup() {
+    static void disable_pullup(StatsAndConfig &stats_config) {
+        stats_config.internal_pullup = 0;
         pinMode(INPUT_PIN_NUMBER, INPUT);
     }
+
 };
