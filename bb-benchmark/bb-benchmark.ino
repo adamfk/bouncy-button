@@ -66,6 +66,7 @@ Advanced Usage:
 #include "CmdHandler.hpp"
 #include "Section.hpp"
 #include "Stats.h"
+#include "Periph.hpp"
 
 /////////////////////////////////////////////////////////////////////////////////////
 // Defines
@@ -87,9 +88,8 @@ static StatsAndConfig stats_config;
 
 void setup() {
     Serial.begin(115200);
-    pinMode(INPUT_PIN_NUMBER, INPUT_PULLUP);  // Arduino digital pin 4 is used to count timer0 rising_edges
-    
-    Timers::setup();
+    Periph::enable_pullup();
+    Periph::setup();
 
     if (DEBUG_TOGGLE_PIN_AT_SAMPLES || DEBUG_TOGGLE_PIN_AT_LOGS || DEBUG_TOGGLE_CUSTOM) {
         pinMode(7, OUTPUT); // PORTD bit 7 is Arduino digital pin 7
@@ -100,8 +100,6 @@ void setup() {
         print_str("\n");
         delay(10);
     }
-    
-    // https://patorjk.com/software/taag/#p=display&h=1&v=1&f=Big%20Money-nw&t=Big%0ABouncy%0AButton%0ABenchmark
 
     Screen::print_splash_screen();
 
@@ -190,7 +188,6 @@ void loop() {
         }
     }
 }
-
 
 /*
 GOALS & DESIGN NOTES:

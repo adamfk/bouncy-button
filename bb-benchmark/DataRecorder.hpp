@@ -1,7 +1,7 @@
 #pragma once
 #include <stdint.h>
 #include "defines.h"
-#include "Timers.hpp"
+#include "Periph.hpp"
 #include "SectionType.h"
 
 enum {

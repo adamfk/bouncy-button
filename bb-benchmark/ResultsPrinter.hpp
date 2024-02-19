@@ -54,9 +54,9 @@ public:
                 print_str("pin: "); print_raw((entry->flags & INPUT_PIN_MASK) > 0);
                 print_str(", rising_edges: "); print_raw(rising_edge_diff);
 
-                print_str(", nsec: "); print_raw(Timers::scale_timer_counts_to_ns(cumulative_timer_counts));
+                print_str(", nsec: "); print_raw(Periph::scale_timer_counts_to_ns(cumulative_timer_counts));
                 // uint32_t time_since_last_change = cumulative_timer_counts - last_change_at_timer_counts;
-                // print_str(", nsec_diff: "); print_raw(Timers::scale_timer_counts_to_ns(time_since_last_change));
+                // print_str(", nsec_diff: "); print_raw(Periph::scale_timer_counts_to_ns(time_since_last_change));
                 print_str(", log: "); print_raw(i+1);
                 print_str(", event: "); print_raw(event_number);
 
@@ -72,11 +72,11 @@ public:
         if (stream_unstable_ms > 0) {
             // if we have any streaming data, we need to consider that it started at the last record's
             // which may be different than the last change (if our last records were from timer rollovers).
-            const uint32_t cumulative_ns = Timers::scale_timer_counts_to_ns(cumulative_timer_counts);
+            const uint32_t cumulative_ns = Periph::scale_timer_counts_to_ns(cumulative_timer_counts);
             print_str("stream_at_ns: "); print_raw(cumulative_ns); print_str("\n");
             unstable_ns = cumulative_ns + (stream_unstable_ms * 1000000);
         } else {
-             unstable_ns = Timers::scale_timer_counts_to_ns(last_change_at_timer_counts);
+             unstable_ns = Periph::scale_timer_counts_to_ns(last_change_at_timer_counts);
         }
 
         return unstable_ns;

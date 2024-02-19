@@ -3,7 +3,7 @@
 #include <stdint.h>
 #include "defines.h"
 
-class Timers {
+class Periph {
     static uint8_t old_tccr0a;
     static uint8_t old_tccr0b;
     //
@@ -188,5 +188,13 @@ class Timers {
 
         float hz = F_CPU * 1.0f / (2 * 1024 * (1.0f + value));
         return hz;
+    }
+
+    static void enable_pullup() {
+        pinMode(INPUT_PIN_NUMBER, INPUT_PULLUP);
+    }
+
+    static void disable_pullup() {
+        pinMode(INPUT_PIN_NUMBER, INPUT);
     }
 };

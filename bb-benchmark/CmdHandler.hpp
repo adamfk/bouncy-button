@@ -7,7 +7,7 @@
 #include "Screen.hpp"
 #include "Section.hpp"
 #include "Stats.h"
-#include "Timers.hpp"
+#include "Periph.hpp"
 #include "ResultsPrinter.hpp"
 
 #define flash_strcmp(a, b) strcmp_P(a, PSTR(b))
@@ -46,6 +46,8 @@ public:
         print_str("  ex  - Exit this menu and record more sweet, sweet, data...\n");
         print_str("  stl - Session Title. Useful for keeping track of what button this is for.\n");
         print_str("  sds - Session Description. Useful for keeping track of what button this is for.\n");
+        print_str("  eip - Enable Internal Pullup resistor (default).\n");
+        print_str("  dip - Disable Internal Pullup resistor.\n");
         print_str("\n");
     }
 
@@ -133,6 +135,14 @@ public:
                 print_str("\n<session_description>\n");
                 echo_serial_input();
                 print_str("\n</session_description>\n");
+            } else if (a == 'e' && b == 'i' && c == 'p') {
+                print_str("Enabling internal pullup resistor.\n");
+                Periph::enable_pullup();
+                result = CommandResult_SUCCESS;
+            } else if (a == 'd' && b == 'i' && c == 'p') {
+                print_str("Disabling internal pullup resistor.\n");
+                Periph::disable_pullup();
+                result = CommandResult_SUCCESS;
             }
         }
 
@@ -348,14 +358,14 @@ public:
         a = tolower(a);
 
         if (a == '0') {
-            Timers::disable_signal_gen();
+            Periph::disable_signal_gen();
         } else if (a == 'f') {
             a = Serial.read();
             switch (a) {
-                case '1': Timers::generate_62_5_ns_pulse(); break;
-                case '2': Timers::generate_8MHz(); break;
-                case '3': Timers::generate_4MHz(); break;
-                case '4': Timers::generate_2_6MHz(); break;
+                case '1': Periph::generate_62_5_ns_pulse(); break;
+                case '2': Periph::generate_8MHz(); break;
+                case '3': Periph::generate_4MHz(); break;
+                case '4': Periph::generate_2_6MHz(); break;
                 default: result = CommandResult_BAD_COMMAND_ARG; break;
             }
             if (result != CommandResult_BAD_COMMAND_ARG) {
@@ -375,7 +385,7 @@ public:
             }
             
             // cast result to int before printing to avoid extra memory allocation
-            float hz = Timers::generate_slow_custom(value);
+            float hz = Periph::generate_slow_custom(value);
             print_str("Generating signal"); print_raw(a); print_str("\n");
             print_str("  Frequency: "); print_raw((uint32_t)hz); print_str(" Hz\n");
             print_str("  Period: "); print_raw((uint32_t)(1000000 / hz)); print_str(" usec\n\n");

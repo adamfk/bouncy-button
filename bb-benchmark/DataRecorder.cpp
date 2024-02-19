@@ -19,9 +19,9 @@ enum RecordDataResult DataRecorder::record_data(void) {
     g_stream_unstable_ms = 0;
     g_stream_1ms_rising_edge_overflow_count = 0;
     set_debug_toggle_pin_low();
-    Timers::customize_timers();
+    Periph::customize_timers();
     auto result = record_data_inner();
-    Timers::restore_timers();
+    Periph::restore_timers();
     return result;
 }
 
@@ -46,7 +46,7 @@ enum RecordDataResult DataRecorder::record_data_inner(void) {
     register uint8_t last_masked_state = masked_input;
     register uint8_t last_rising_edge_count = rising_edge_count;
 
-    Timers::clear_rising_edges();
+    Periph::clear_rising_edges();
     uint16_t timer_count = 0;
 
     // log setup condition
@@ -70,8 +70,8 @@ enum RecordDataResult DataRecorder::record_data_inner(void) {
         }
 
         // clear timer so that we can delay a timer rollover log entry
-        Timers::clear_timer();
-        Timers::clear_t1_overflow_flag();
+        Periph::clear_timer();
+        Periph::clear_t1_overflow_flag();
         
         debug_toggle_pin_for_sample();
 
@@ -91,7 +91,7 @@ enum RecordDataResult DataRecorder::record_data_inner(void) {
 
         // for crazy fast pulse trains, it is better to test for rising edge count change first, but for most buttons, pin change is more likely.
         if (masked_input != last_masked_state || rising_edge_count != last_rising_edge_count) {
-            timer_count = Timers::read_timer();
+            timer_count = Periph::read_timer();
             debug_toggle_pin_for_log();
 
             g_entries[index].flags = masked_input;
@@ -133,7 +133,7 @@ enum RecordDataResult DataRecorder::record_data_inner(void) {
 
         // for crazy fast pulse trains, it is better to test for rising edge count change first, but for most buttons, pin change is more likely.
         if (masked_input != last_masked_state || rising_edge_count != last_rising_edge_count) {
-            timer_count = Timers::read_timer();
+            timer_count = Periph::read_timer();
             debug_toggle_pin_for_log();
 
             g_entries[index].flags = masked_input;
@@ -147,11 +147,11 @@ enum RecordDataResult DataRecorder::record_data_inner(void) {
             if (index >= COUNT_OF(g_entries)) {
                 goto full;  // <--------------- NOTE JUMP!!!!! ----------------
             }
-        } else if (Timers::get_t1_overflow_flag()) {
-            const uint16_t timer_count = Timers::read_timer();
+        } else if (Periph::get_t1_overflow_flag()) {
+            const uint16_t timer_count = Periph::read_timer();
             debug_toggle_pin_for_log();
 
-            Timers::clear_t1_overflow_flag();
+            Periph::clear_t1_overflow_flag();
 
             // log
             g_entries[index].flags = masked_input | STATE_FLAG_TIMER_ROLLOVER_NOTED;
@@ -176,7 +176,7 @@ enum RecordDataResult DataRecorder::record_data_inner(void) {
 
 timed_out:
 full:
-    Timers::clear_timer();
+    Periph::clear_timer();
 
     // we now have around 16000 cycles to setup for first sample, but we need to handle rising edge count overflows which could happen
     // every 256 instructions.
@@ -186,8 +186,8 @@ full:
     // detect rising edge count overflow manually the first time while we clear the overflow flag
     {
         // clear overflow flag because it could have overflowed at anytime during high speed sampling
-        rising_edge_count = Timers::read_rising_edges();
-        Timers::clear_rising_edges_overflow_flag();
+        rising_edge_count = Periph::read_rising_edges();
+        Periph::clear_rising_edges_overflow_flag();
         uint8_t to_add = rising_edge_count - last_rising_edge_count; // modulo math
         cumulative_rising_edge_count += to_add;
         last_rising_edge_count = rising_edge_count;
@@ -207,7 +207,7 @@ full:
 
     // NOTE! We can't use the overflow flag because we are using CTC mode (we don't let it overflow).
     // We have to use the output compare match flag instead.
-    Timers::clear_t1_output_compare_match_flag();
+    Periph::clear_t1_output_compare_match_flag();
 
     handle_rising_edge_overflow();
 
@@ -259,8 +259,8 @@ full:
         handle_rising_edge_overflow();
 
         // check if 1 ms has passed
-        if (Timers::get_t1_output_compare_match_flag()) {
-            Timers::clear_t1_output_compare_match_flag();
+        if (Periph::get_t1_output_compare_match_flag()) {
+            Periph::clear_t1_output_compare_match_flag();
             debug_toggle_pin_for_sample();
             ms_count++;
 
@@ -370,8 +370,8 @@ streaming_done:
 static inline void handle_rising_edge_overflow(void) {
     // debug_toggle_pin();
 
-    if (Timers::get_rising_edges_overflow_flag()) {
-        Timers::clear_rising_edges_overflow_flag();
+    if (Periph::get_rising_edges_overflow_flag()) {
+        Periph::clear_rising_edges_overflow_flag();
         DataRecorder::g_stream_1ms_rising_edge_overflow_count++;
     }
 }
@@ -387,9 +387,9 @@ void DataRecorder::reset_entries(void) {
 
 
 RecordDataResult DataRecorder::wait_for_stable_pin(void) {
-    Timers::customize_timers();
+    Periph::customize_timers();
     RecordDataResult result = wait_for_stable_pin_inner();
-    Timers::restore_timers();
+    Periph::restore_timers();
 
     return result;
 }
@@ -411,16 +411,16 @@ RecordDataResult DataRecorder::wait_for_stable_pin_inner(void) {
         }
 
         pin_state = INPUT_PIN_REGISTER & INPUT_PIN_MASK;
-        if (pin_state != last_pin_state || Timers::read_rising_edges() != 0) {
-            Timers::clear_rising_edges();
-            Timers::clear_timer();
-            Timers::clear_t1_overflow_flag();
+        if (pin_state != last_pin_state || Periph::read_rising_edges() != 0) {
+            Periph::clear_rising_edges();
+            Periph::clear_timer();
+            Periph::clear_t1_overflow_flag();
             overflows_left = overflows_before_stable;
             last_pin_state = pin_state;
         }
 
-        if (Timers::get_t1_overflow_flag()) {
-            Timers::clear_t1_overflow_flag();
+        if (Periph::get_t1_overflow_flag()) {
+            Periph::clear_t1_overflow_flag();
             overflows_left--;
             if (overflows_left == 0) {
                 done = true;
