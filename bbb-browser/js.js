@@ -1,8 +1,9 @@
 "use strict";
 
 const waterfallChartDiv = document.getElementById('waterfall-chart');
+const displayWaterfallDiv = document.getElementById('display-waterfall');
 
-/** @type {TextToRecordParserResult} */
+/** @type {TestSession} */
 let g_parseResults = null;
 let g_exportUnits = 'us';
 
@@ -117,48 +118,6 @@ function groupTestsByPressRelease(tests) {
 }
 
 
-function loadData() {
-    document.getElementById('div-input').style.display = 'none';
-    document.getElementById('div-display').style.display = 'block';
-    const inputString = document.getElementById('user-data-text-input').value;
-    g_parseResults = TextToRecordParser.parse(inputString);
-
-    // set Window title
-    document.title = "BBBB - " + g_parseResults.sessionTitle;
-    document.getElementById("span-title").innerText = g_parseResults.sessionTitle + " - ";
-
-    // set loaded data info
-    document.getElementById("loaded-data-test-count").innerText = "" + g_parseResults.tests.length;
-
-    if (g_parseResults.sessionDescription.length > 0) {
-        document.getElementById("session-description-outer").style.display = 'block';
-        document.getElementById("session-description-content").innerText = g_parseResults.sessionDescription;
-    } else {
-        document.getElementById("session-description-outer").style.display = 'none';
-    }
-
-    let totalEventCount = 0;
-    let totalEdgeCount = 0;
-    g_parseResults.tests.forEach(test => {
-        totalEventCount += test.events.length;
-        totalEdgeCount += test.events.length;
-        test.events.forEach(event => {
-            totalEdgeCount += event.risingEdges * 2 - 1; // rough estimate
-        });
-    });
-    document.getElementById("loaded-data-total-event-count").innerText = "" + totalEventCount;
-    document.getElementById("loaded-data-total-edge-count").innerText = "" + totalEdgeCount;
-
-    let warningText = "";
-    if (totalEdgeCount > 100000) {
-        warningText = "Many edges! Graph will auto limit. Use `Time Focus` to select area of interest.";
-    } else if (totalEdgeCount == 0) {
-        warningText = "No edges found. Bad input data?";
-    }
-    document.getElementById("loaded-data-warnings").innerText = warningText;
-
-    showSectionCheckboxes(g_parseResults.sections);
-}
 
 /**
  * @param {string} units
@@ -361,10 +320,14 @@ function decodeAndGraph() {
         sortTests(selectedTests);
     }
 
-    const displayWaterfallDiv = document.getElementById('display-waterfall');
-
     // decide if we should display the waterfall chart
     if (document.getElementById("show-waterfall").checked) {
+        if (isTightMode()) {
+            waterfallChartDiv.style.height = '75vh';
+        } else {
+            waterfallChartDiv.style.height = '90vh';
+        }
+
         displayWaterfallDiv.style.display = 'block';
         let combinedChart = new PressReleaseTraces(g_parseResults.sections, sectionColors);
         const maxFoundNs = Grapher.addWaterFallLevels(combinedChart, selectedTests, focusTimeSpan);
@@ -385,16 +348,84 @@ function decodeAndGraph() {
     tableDataInnerDiv.innerHTML = dataTableMaker.html;
 
     {
-        let plotter = new BoxPlotter();
+        const plotter = new BoxPlotter();
         plotter.plotBounceDurations("stats-press-release-durations", "Bounce Durations", selectedTests);
         plotter.plotLongestPulseDurations("stats-press-release-longest-pulse-durations", "Longest Pulse Durations", selectedTests);
         plotter.plotTransitions("stats-press-release-transitions", "Transitions", selectedTests);
     }
+
+    if (document.getElementById('show-summary').checked) {
+        const summary = new Summary(g_parseResults);
+        summary.create(selectedTests);
+        console.log(summary);
+        const summaryTableMaker = new SummaryTableMaker(g_parseResults, g_sectionStyles);
+        summaryTableMaker.addTable1(summary);
+        summaryTableMaker.addTable2(summary);
+        document.getElementById('display-summary').style.display = 'block';
+        document.getElementById('display-summary-inner').innerHTML = summaryTableMaker.html;
+    } else {
+        document.getElementById('display-summary').style.display = 'none';
+    }
 }
+
+
+function loadData() {
+    document.getElementById('div-input').style.display = 'none';
+    document.getElementById('div-display').style.display = 'block';
+    document.getElementById('display-stats-graphs').style.display = 'none';
+    document.getElementById('display-summary').style.display = 'none';
+    displayWaterfallDiv.style.display = 'none';
+
+    const inputString = document.getElementById('user-data-text-input').value;
+    g_parseResults = TextToRecordParser.parse(inputString);
+
+    // set Window title
+    document.title = "BBBB - " + g_parseResults.sessionTitle;
+    document.getElementById("span-title").innerText = g_parseResults.sessionTitle + " - ";
+
+    // set loaded data info
+    document.getElementById("loaded-data-test-count").innerText = "" + g_parseResults.tests.length;
+
+    if (g_parseResults.sessionDescription.length > 0) {
+        document.getElementById("session-description-outer").style.display = 'block';
+        document.getElementById("session-description-content").innerText = g_parseResults.sessionDescription;
+    } else {
+        document.getElementById("session-description-outer").style.display = 'none';
+    }
+
+    let totalEventCount = 0;
+    let totalEdgeCount = 0;
+    g_parseResults.tests.forEach(test => {
+        totalEventCount += test.events.length;
+        totalEdgeCount += test.events.length;
+        test.events.forEach(event => {
+            totalEdgeCount += event.risingEdges * 2 - 1; // rough estimate
+        });
+    });
+    document.getElementById("loaded-data-total-event-count").innerText = "" + totalEventCount;
+    document.getElementById("loaded-data-total-edge-count").innerText = "" + totalEdgeCount;
+
+    let warningText = "";
+    if (totalEdgeCount > 100000) {
+        warningText = "Many edges! Waterfall auto disabled. Graph may auto limit. Use `Time Focus` to select area of interest.";
+        document.getElementById("show-waterfall").checked = false;
+    } else if (totalEdgeCount == 0) {
+        warningText = "No edges found. Bad input data?";
+    }
+    document.getElementById("loaded-data-warnings").innerText = warningText;
+
+    showSectionCheckboxes(g_parseResults.sections);
+}
+
 
 function unloadData() {
     document.getElementById('div-input').style.display = 'block';
     document.getElementById('div-display').style.display = 'none';
+
+    document.getElementById("stats-press-release-durations").innerHTML = '';
+    document.getElementById("stats-press-release-longest-pulse-durations").innerHTML = '';
+    document.getElementById("stats-press-release-transitions").innerHTML = '';
+
     waterfallChartDiv.innerHTML = '';
     tableDataInnerDiv.innerHTML = '';
     displayTableDataDiv.style.display = 'none';
@@ -514,3 +545,21 @@ function findTestById(testId) {
     return test;
 }
 
+// click on header to scroll to section
+document.querySelectorAll('h2, .click-to-scroll').forEach(item => {
+    item.addEventListener('click', event => {
+        item.scrollIntoView(true);
+    });
+});
+
+function isTightMode() {
+    return document.getElementById('show-tight').checked;
+}
+
+document.getElementById('show-tight').addEventListener('change', event => {
+    let display = isTightMode() ? 'none' : 'block';
+
+    document.querySelectorAll('h2').forEach(item => {
+        item.style.display = display;
+    });
+});

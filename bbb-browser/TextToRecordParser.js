@@ -1,22 +1,4 @@
 "use strict";
-class TextToRecordParserResult
-{
-    sessionTitle = "Un-named Session";
-    sessionDescription = "";
-
-    /**
-     * @param {Map<string, Section>} sections
-     * @param {Test[]} tests
-     */
-    constructor(sections, tests)
-    {
-        /** @type {Map<string, Section>} */
-        this.sections = sections;
-        /** @type {Test[]} */
-        this.tests = tests;
-    }
-}
-
 class TextToRecordParser {
 
     /**
@@ -197,13 +179,13 @@ class TextToRecordParser {
     /**
      * 
      * @param {string} input 
-     * @returns {TextToRecordParserResult}
+     * @returns {TestSession}
      */
     static parse(input) {
         const testsRegex = /<session_description>(?<sessionDescription>[\s\S]*?)<\/session_description>|<session_title>(?<sessionTitle>[\s\S]*?)<\/session_title>|<test>(?<testInner>[\s\S]*?)<\/test>|<(?<deleteLast>delete_last_test)\/>|<(?<sessionStart>test_session_start)\/>|<section_start>(?<sectionTypeStart>[\s\S]*?)<\/section_start>/g;
         const matches = input.matchAll(testsRegex);
 
-        /** @type {TextToRecordParserResult} */
+        /** @type {TestSession} */
         let objResult;
         /** @type {Map<string, Section>} */
         let sectionMap;
@@ -217,7 +199,7 @@ class TextToRecordParser {
             sectionMap = new Map();
             section = new Section('_n', 'Normal: default button presses. p(norm),rl(norm)');
             sectionMap.set(section.id, section);
-            objResult = new TextToRecordParserResult(sectionMap, tests);
+            objResult = new TestSession(sectionMap, tests);
         }
 
         reset();

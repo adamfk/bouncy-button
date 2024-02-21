@@ -16,6 +16,10 @@
             font-family: system-ui;
         }
 
+        #bbbb-version {
+            font-size: small;
+        }
+
         textarea {
             color: #bdbdbd;
             background-color: #312f2f;
@@ -40,8 +44,13 @@
             accent-color: #ffffff;
         }
 
-        h1 {
+        h1, h2 {
             margin-bottom: 0px;
+            margin-top: 12px;
+        }
+
+        h2, .click-to-scroll {
+            cursor: pointer;
         }
 
         /* css for a nice dark mode table */
@@ -57,10 +66,19 @@
             text-align: center;
         }
 
+        #display-summary-inner th, #display-summary-inner td {
+            padding-top: 3px;
+            padding-bottom: 3px;
+        }
+
         th {
             background-color: #b3b3b3;
             color: #1f1f1f;
         }
+
+        /* th.release, td.release {
+            color: #ff7474;
+        } */
 
         tr:nth-child(even) {
             background-color: #1f1f1f;
@@ -74,13 +92,24 @@
             text-align: right;
         }
 
+        th.left, td.left {
+            text-align: left;
+        }
+
+        #table-summary-2 {
+            margin-left: 12px;
+        }
+
+        table {
+            display: inline-block;
+        }
 
     </style>
 
 </head>
 
 <body>
-    <h1 style="margin-top: 0px;"><span id="span-title"></span>Bouncy Button Benchmark Browser</h1>
+    <h1 style="margin-top: -12px;"><span id="span-title"></span>Bouncy Button Benchmark Browser <span id="bbbb-version">(v0.2.0)</span></h1>
 
     <div id="div-input">
         <p>Paste your data into the text area below and press the load button.</p>
@@ -104,12 +133,12 @@
         </div>
 
         <div id="session-stats">
-            <b>Test count: </b> <span id="loaded-data-test-count">0</span>,
+            <b class="click-to-scroll">Test count: </b> <span id="loaded-data-test-count">0</span>,
             <b>Total event count: </b> <span id="loaded-data-total-event-count">0</span>,
             <b title="rough estimate">Total edge count: </b> <span id="loaded-data-total-edge-count">0</span>,
             <b>Warnings: </b> <span id="loaded-data-warnings" style="color: #ffff21;">none</span>, 
         </div>
-        <b>Section type: </b>
+        <b class="click-to-scroll">Section type: </b>
     
         <div id="section-controls" style="display: inline-block;">
             <!-- checkbox for normal activations -->
@@ -176,42 +205,59 @@
         <button onclick="decodeAndGraph()" style="margin-top: 5px;" >Graph & Analyze</button>
         <button onclick="unloadData()" style="margin-top: 5px;" >Unload Data</button>
     
-        <!-- <select id="display-mode">
-            <option value="all">Graphs &amp; Tables</option>
-            <option value="waterfall">Waterfall</option>
-            <option value="tables">Tables</option>
-        </select> -->
+        <div title="Show Summary" style="display: inline-block; margin-right: 8px;">
+            <label for="show-summary">Summary</label>
+            <input type="checkbox" id="show-summary" name="show-summary" value="show-summary" checked>
+        </div>
 
         <div title="Show Waterfall Graph" style="display: inline-block;">
             <label for="show-waterfall">Waterfall</label>
             <input type="checkbox" id="show-waterfall" name="show-waterfall" value="show-waterfall" checked>
         </div>
 
+        <div title="Show Tight" style="display: inline-block;">
+            <label for="show-tight">Tight</label>
+            <input type="checkbox" id="show-tight" name="show-tight" value="show-tight">
+        </div>
+
+
+        <!-- display stuff -->
+
+
+
+
+        <div id="display-summary" style="margin-top: 8px; display: block;">
+            <h2 style="display: block;">Summary Data</h2>
+            <!-- <span class="click-to-scroll">Sections: </span><span id="display-summary-sections"></span> -->
+            <div id="display-summary-inner">...</div>
+        </div>
+
         <div id="display-waterfall" style="display: none;">
+            <h2>Waterfall</h2>
             <div id="waterfall-chart" style="margin-top: 8px; height:90vh;">
             </div>
         </div>
 
-        <div id="display-stats-graphs" style="margin-top: 8px;">
+        <div id="display-stats-graphs" style="margin-top: 8px; display: none;">
+            <h2>Stats</h2>
             <div id="stats-press-release-durations" style="height:50vh"></div>
             <div id="stats-press-release-longest-pulse-durations" style="height:50vh"></div>
             <div id="stats-press-release-transitions" style="height:50vh"></div>
         </div>
         
         <div id="display-table-data" style="margin-top: 8px; display: none;">
-            <!-- <h1>Table Data</h1> -->
+            <h2>Table Data</h2>
             <div id="table-data-inner">...</div>
         </div>
     
-        <!-- <h1>Statistics</h1>
-        <div id="statistics">TODO...</div> -->
-
     </div>
 
 
 </body>
 
 <script src="purify.js"></script>
+<script src="jstat.js"></script>
+
 <script src="Section.js"></script>
 <script src="LogEntry.js"></script>
 <script src="LevelRecord.js"></script>
@@ -222,10 +268,12 @@
 <script src="LevelTraces.js"></script>
 <script src="DataTableMaker.js"></script>
 
+<script src="TestSession.js"></script>
 <script src="TextToRecordParser.js"></script>
 <script src="RecordToLevelConverter.js"></script>
 <script src="Grapher.js"></script>
 <script src="BoxPlotter.js"></script>
+<script src="Summary.js"></script>
 
 <script src="js.js"></script>   <!-- allows body to be loaded -->
 
