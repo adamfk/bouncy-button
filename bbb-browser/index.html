@@ -2,7 +2,7 @@
 
 <html>
 <head>
-    <title>Bouncy Button Benchmark Browser</title>
+    <title>B⁴ - Bouncy Button Benchmark Browser</title>
     <meta charset="UTF-8">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!-- todo https://plotly.com/javascript/ribbon-plots/ -->
@@ -109,7 +109,7 @@
 </head>
 
 <body>
-    <h1 style="margin-top: -12px;"><span id="span-title"></span>Bouncy Button Benchmark Browser <span id="bbbb-version">(v0.2.0)</span></h1>
+    <h1 style="margin-top: -12px;"><span id="span-title"></span>Bouncy Button Benchmark Browser <span id="bbbb-version">(v0.2.1)</span></h1>
 
     <div id="div-input">
         <p>Paste your data into the text area below and press the load button.</p>
@@ -119,24 +119,28 @@
     </div>
 
     <div id="div-display" style="display: none;">
-        <div style="margin-bottom: 4px;" id="session-description-outer">
-            <b>Session Description:</b>
-                <pre id="session-description-content"
-                style="margin: 0;
-                padding: 3px;
-                background-color: #3b444c;
-                display: table;
-                border: 1px solid black;
-                max-width: 70%;
-                white-space: pre-wrap;
-                "></pre>
+        <div id="session-description-outer2">
+            <div style="margin-bottom: 4px;" id="session-description-outer">
+                <b>Session Description:</b>
+                    <pre id="session-description-content"
+                    style="margin: 0;
+                    padding: 3px;
+                    background-color: #3b444c;
+                    display: table;
+                    border: 1px solid black;
+                    max-width: 70%;
+                    white-space: pre-wrap;
+                    "></pre>
+            </div>
         </div>
 
         <div id="session-stats">
             <b class="click-to-scroll">Test count: </b> <span id="loaded-data-test-count">0</span>,
             <b>Total event count: </b> <span id="loaded-data-total-event-count">0</span>,
-            <b title="rough estimate">Total edge count: </b> <span id="loaded-data-total-edge-count">0</span>,
-            <b>Warnings: </b> <span id="loaded-data-warnings" style="color: #ffff21;">none</span>, 
+            <b title="rough estimate">Total edge count: </b> <span title="rough estimate" id="loaded-data-total-edge-count">0</span>,
+            <div id="loaded-data-warnings-outer" style="display: inline;">
+                <b>Warnings: </b> <span id="loaded-data-warnings" style="color: #ffff21;">none</span>, 
+            </div>
         </div>
         <b class="click-to-scroll">Section type: </b>
     
@@ -215,8 +219,8 @@
             <input type="checkbox" id="show-waterfall" name="show-waterfall" value="show-waterfall" checked>
         </div>
 
-        <div title="Show Tight" style="display: inline-block;">
-            <label for="show-tight">Tight</label>
+        <div title="Change display for exporting" style="display: inline-block;">
+            <label for="show-tight">Tight Export</label>
             <input type="checkbox" id="show-tight" name="show-tight" value="show-tight">
         </div>
 
@@ -245,11 +249,12 @@
             <div id="stats-press-release-transitions" style="height:50vh"></div>
         </div>
         
-        <div id="display-table-data" style="margin-top: 8px; display: none;">
-            <h2>Table Data</h2>
-            <div id="table-data-inner">...</div>
+        <div id="display-table-data-outer">
+            <div id="display-table-data" style="margin-top: 8px; display: none;">
+                <h2>Table Data</h2>
+                <div id="table-data-inner">...</div>
+            </div>
         </div>
-    
     </div>
 
 

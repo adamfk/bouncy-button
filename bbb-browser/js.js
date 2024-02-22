@@ -380,10 +380,16 @@ function loadData() {
     g_parseResults = TextToRecordParser.parse(inputString);
 
     // set Window title
-    document.title = "BBBB - " + g_parseResults.sessionTitle;
+    document.title = "B⁴ - " + g_parseResults.sessionTitle;
     document.getElementById("span-title").innerText = g_parseResults.sessionTitle + " - ";
 
-    // set loaded data info
+    updateLoadedDataInfo();
+
+    showSectionCheckboxes(g_parseResults.sections);
+}
+
+
+function updateLoadedDataInfo() {
     document.getElementById("loaded-data-test-count").innerText = "" + g_parseResults.tests.length;
 
     if (g_parseResults.sessionDescription.length > 0) {
@@ -405,6 +411,13 @@ function loadData() {
     document.getElementById("loaded-data-total-event-count").innerText = "" + totalEventCount;
     document.getElementById("loaded-data-total-edge-count").innerText = "" + totalEdgeCount;
 
+    updateLoadedDataWarnings(totalEdgeCount);
+}
+
+/**
+ * @param {number} totalEdgeCount
+ */
+function updateLoadedDataWarnings(totalEdgeCount) {
     let warningText = "";
     if (totalEdgeCount > 100000) {
         warningText = "Many edges! Waterfall auto disabled. Graph may auto limit. Use `Time Focus` to select area of interest.";
@@ -413,10 +426,13 @@ function loadData() {
         warningText = "No edges found. Bad input data?";
     }
     document.getElementById("loaded-data-warnings").innerText = warningText;
-
-    showSectionCheckboxes(g_parseResults.sections);
+    const warningsOuter = document.getElementById("loaded-data-warnings-outer");
+    if (warningText.length > 0) {
+        warningsOuter.style.display = 'block';
+    } else {
+        warningsOuter.style.display = 'none';
+    }
 }
-
 
 function unloadData() {
     document.getElementById('div-input').style.display = 'block';
@@ -562,4 +578,7 @@ document.getElementById('show-tight').addEventListener('change', event => {
     document.querySelectorAll('h2').forEach(item => {
         item.style.display = display;
     });
+
+    document.getElementById("session-description-outer").style.display = display;
+    document.getElementById("display-table-data-outer").style.display = display;
 });
