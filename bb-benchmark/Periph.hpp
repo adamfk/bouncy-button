@@ -3,6 +3,7 @@
 #include <stdint.h>
 #include "defines.h"
 #include "Stats.h"
+#include <avr/boot.h> // for boot_signature_byte_get
 
 class Periph {
     static uint8_t old_tccr0a;
@@ -199,6 +200,30 @@ class Periph {
     static void disable_pullup(StatsAndConfig &stats_config) {
         stats_config.internal_pullup = 0;
         pinMode(INPUT_PIN_NUMBER, INPUT);
+    }
+
+    static void print_board_id(void) {
+        // See https://github.com/ricaun/ArduinoUniqueID/blob/master/MCU.md#Disclaimer
+        // https://microchip.my.site.com/s/article/Serial-number-in-AVR---Mega-Tiny-devices
+        #if defined(__AVR_ATmega328P__)
+            const bool skip_byte_6 = true;
+        #elif defined(__AVR_ATmega328PB__)
+            const bool skip_byte_6 = false;
+        #else
+            print_str("Unsupported MCU");
+            return;
+        #endif
+
+        print_str("0x");
+        for (uint8_t i = 0; i <= 9; i++)
+        {
+            if (i == 6 && skip_byte_6)
+                continue;
+            uint8_t b = boot_signature_byte_get(0x0E + i);
+            if (b < 0x10)
+                print_str("0");
+            Serial.print(b, HEX); // doesn't print leading 0
+        }
     }
 
 };

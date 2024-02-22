@@ -3,6 +3,7 @@
 #include "defines.h"
 #include <stdint.h>
 #include "Section.hpp"
+#include "Periph.hpp"
 
 class Screen {
 public:
@@ -45,6 +46,7 @@ static void print_splash_screen(void) {
     print_str("  \\_______/  \\_______|\\__|  \\__| \\_______|\\__|  \\__|\\__| \\__| \\__| \\_______|\\__|      \\__|  \\__|\n");
     // print_str(" \n");
     print_str("  Big Bouncy Button Benchmark. Version " VERSION_STR "\n");
+
     print_str("  Arduino board: "); 
     #if defined(ARDUINO_AVR_UNO)
         print_str("Uno");
@@ -54,6 +56,15 @@ static void print_splash_screen(void) {
         print_str("???");
     #endif
     print_str("\n");
+
+    print_str("  MCU: "); 
+    print_str(STRINGIFY(__AVR_DEVICE_NAME__));
+    print_str("\n");
+
+    print_str("  MCU ID: ");
+    Periph::print_board_id();
+    print_str("\n");
+
     print_str("  F_CPU: "); print_raw(F_CPU); print_str("\n");
     print_str("\n\n\n");
 }

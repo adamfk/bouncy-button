@@ -17,6 +17,9 @@ static const int16_t MS_STREAM_TIMEOUT = 1000;
 #define print_str(arg) Serial.print(F(arg))
 #define print_raw(arg) Serial.print(arg) // use for printing numbers and stuff
 
+#define X_STRINGIFY(x) #x
+#define STRINGIFY(x) X_STRINGIFY(x)
+
 
 #if defined(ARDUINO_AVR_UNO) || defined(ARDUINO_AVR_NANO)
 // must use Arduino pin 4 (PD4) as it has special hardware
