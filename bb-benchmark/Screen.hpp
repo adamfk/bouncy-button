@@ -10,17 +10,8 @@ public:
 
 static void print_splash_screen(void) {
     // https://patorjk.com/software/taag/#p=display&h=1&v=1&f=Big%20Money-nw&t=Big%0ABouncy%0AButton%0ABenchmark
-    print_str("  $$$$$$$\\  $$\\ \n");
-    print_str("  $$  __$$\\ \\__| \n");
-    print_str("  $$ |  $$ |$$\\  $$$$$$\\ \n");
-    print_str("  $$$$$$$\\ |$$ |$$  __$$\\ \n");
-    print_str("  $$  __$$\\ $$ |$$ /  $$ | \n");
-    print_str("  $$ |  $$ |$$ |$$ |  $$ | \n");
-    print_str("  $$$$$$$  |$$ |\\$$$$$$$ | \n");
-    print_str("  \\_______/ \\__| \\____$$ | \n");
-    print_str("                $$\\   $$ | \n");
-    print_str("  $$$$$$$\\      \\$$$$$$  | \n");
-    print_str("  $$  __$$\\      \\______/ \n");
+    print_str("  $$$$$$$\\ \n");
+    print_str("  $$  __$$\\ \n");
     print_str("  $$ |  $$ | $$$$$$\\  $$\\   $$\\ $$$$$$$\\   $$$$$$$\\ $$\\   $$\\ \n");
     print_str("  $$$$$$$\\ |$$  __$$\\ $$ |  $$ |$$  __$$\\ $$  _____|$$ |  $$ | \n");
     print_str("  $$  __$$\\ $$ /  $$ |$$ |  $$ |$$ |  $$ |$$ /      $$ |  $$ | \n");
@@ -45,7 +36,7 @@ static void print_splash_screen(void) {
     print_str("  $$$$$$$  |\\$$$$$$$\\ $$ |  $$ |\\$$$$$$$\\ $$ |  $$ |$$ | $$ | $$ |\\$$$$$$$ |$$ |      $$ | \\$$\\ \n");
     print_str("  \\_______/  \\_______|\\__|  \\__| \\_______|\\__|  \\__|\\__| \\__| \\__| \\_______|\\__|      \\__|  \\__|\n");
     // print_str(" \n");
-    print_str("  Big Bouncy Button Benchmark. Version " VERSION_STR "\n");
+    print_str("  Bouncy Button Benchmark. Version " VERSION_STR "\n");
 
     print_str("  Arduino board: "); 
     #if defined(ARDUINO_AVR_UNO)
