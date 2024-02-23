@@ -40,6 +40,10 @@
             user-select: none;
         }
 
+        div.stats-graph {
+            margin-top: 8px;
+        }
+
         input[type='checkbox'] {
             accent-color: #ffffff;
         }
@@ -244,9 +248,9 @@
 
         <div id="display-stats-graphs" style="margin-top: 8px; display: none;">
             <h2>Stats</h2>
-            <div id="stats-press-release-durations" style="height:50vh"></div>
-            <div id="stats-press-release-longest-pulse-durations" style="height:50vh"></div>
-            <div id="stats-press-release-transitions" style="height:50vh"></div>
+            <div class="stats-graph" id="stats-press-release-durations" style="height:50vh"></div>
+            <div class="stats-graph" id="stats-press-release-longest-pulse-durations" style="height:50vh"></div>
+            <div class="stats-graph" id="stats-press-release-transitions" style="height:50vh"></div>
         </div>
         
         <div id="display-table-data-outer">
