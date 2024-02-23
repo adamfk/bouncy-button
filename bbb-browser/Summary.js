@@ -99,8 +99,6 @@ class Summary {
         this.bounceDurationNs.calculate();
         this.longestPulseNs.calculate();
         this.transitionsCount.calculate();
-
-        console.log(this);
     }
 }
 

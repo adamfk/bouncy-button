@@ -301,7 +301,6 @@ function decodeAndGraph() {
 
     /** @type {Test[]} */
     let selectedTests = [];
-    // console.log(tests);
     let count = 1;
     g_parseResults.tests.forEach(test => {
         if (testIdFilterSet.get(test.testId) == 'exc') {
@@ -359,7 +358,6 @@ function decodeAndGraph() {
     if (document.getElementById('show-summary').checked) {
         const summary = new Summary(g_parseResults);
         summary.create(selectedTests);
-        console.log(summary);
         const summaryTableMaker = new SummaryTableMaker(g_parseResults, g_sectionStyles);
         summaryTableMaker.addTable1(summary);
         summaryTableMaker.addTable2(summary);
@@ -498,8 +496,6 @@ function copyTestLevelsToClipboard(testId) {
         text += levelRecord.nsecStart/divisor + '\t' + levelRecord.pinState + '\t' + levelRecord.nsecDuration/divisor + '\n';
     });
     navigator.clipboard.writeText(text);
-
-    console.log("copyTestLevelsToClipboard " + testId);
 }
 
 function getExportUnitsAndDivisor() {
@@ -549,8 +545,6 @@ function copyGraphTestLevelsToClipboard(testId) {
         lastLevel = level;
     });
     navigator.clipboard.writeText(text);
-
-    console.log("copyTestLevelsToClipboard " + testId);
 }
 
 /**

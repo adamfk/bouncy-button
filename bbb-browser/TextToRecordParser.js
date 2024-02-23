@@ -164,7 +164,7 @@ class TextToRecordParser {
      * @param {Test} test
      */
     static handleMissingStreamAtNs(test) {
-        console.log('handleMissingStreamAtNs()');
+        console.warn('handleMissingStreamAtNs()');
 
         // We believe we fixed this in version 0.3.x
         if (test.swVersion.major == 0 && test.swVersion.minor >= 3)
