@@ -589,6 +589,7 @@ document.getElementById('show-tight').addEventListener('change', event => {
 
     document.getElementById("session-description-outer").style.display = display;
     document.getElementById("display-table-data-outer").style.display = display;
+    document.getElementById("display-stats-graphs-for-tight").style.display = display;
 });
 
 setInterval(() => {
