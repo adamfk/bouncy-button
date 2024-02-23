@@ -149,14 +149,15 @@ class TextToRecordParser {
      * @param {Test} test
      */
     static fixTiming(test) {
-        if (test.getSwVersionString() !== '0.2.3' && test.getSwVersionString() !== '0.2.4')
-            return;
+        if (test.swVersion.major == 0 && test.swVersion.minor == 2 && test.swVersion.patch <= 4)
+        {
+            // Version 0.2.3/4 reported timer counts as 62ns instead of 62.5ns.
+            // This caused us to be off by almost 1%.
+            test.events.forEach(evt => {
+                evt.nsec *= 62.5 / 62;
+            });
 
-        // Version 0.2.3/4 reported timer counts as 62ns instead of 62.5ns.
-        // This caused us to be off by almost 1%.
-        test.events.forEach(evt => {
-            evt.nsec *= 62.5 / 62;
-        });
+        }
     }
 
     /**

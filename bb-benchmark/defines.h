@@ -1,6 +1,6 @@
 #pragma once
 
-#define VERSION_STR "0.2.10"
+#define VERSION_STR "0.3.0"
 
 // debug stuff
 #define DEBUG_TOGGLE_PIN_AT_SAMPLES  0
