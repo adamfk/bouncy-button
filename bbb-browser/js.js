@@ -420,15 +420,17 @@ function updateLoadedDataInfo() {
 function updateLoadedDataWarnings(totalEdgeCount) {
     let warningText = "";
     if (totalEdgeCount > 100000) {
-        warningText = "Many edges! Waterfall auto disabled. Graph may auto limit. Use `Time Focus` to select area of interest.";
+        warningText = "TONS of edges! Waterfall auto disabled. Graph may auto limit. Use `Time Focus` to select area of interest.";
         document.getElementById("show-waterfall").checked = false;
+    } else if (totalEdgeCount > 30000) {
+        warningText = "Lots of edges. Waterfall graphing will likely take a few seconds. You may want to select a time/test/section subset.";
     } else if (totalEdgeCount == 0) {
         warningText = "No edges found. Bad input data?";
     }
     document.getElementById("loaded-data-warnings").innerText = warningText;
     const warningsOuter = document.getElementById("loaded-data-warnings-outer");
     if (warningText.length > 0) {
-        warningsOuter.style.display = 'block';
+        warningsOuter.style.display = 'inline-block';
     } else {
         warningsOuter.style.display = 'none';
     }
