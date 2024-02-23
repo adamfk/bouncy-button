@@ -7,6 +7,8 @@ const displayWaterfallDiv = document.getElementById('display-waterfall');
 let g_parseResults = null;
 let g_exportUnits = 'us';
 
+const g_errorLogger = new ErrorLogger();
+
 const sectionColors = ["#1775e8", "#54d2d2", "#ffcb00", "#6ad02f", "#e81780", "#ffffff"];
 const fontColors = ["#ffffff", "#000000", "#000000", "#000000", "#ffffff", "#000000"];
 
@@ -66,7 +68,7 @@ function sortTests(array)
     } else if (sortType == 'transition-count') {
         array.sort((a, b) => a.transitionsLoadedCount - b.transitionsLoadedCount);
     } else {
-        console.error("Unknown sort type: " + sortType);
+        g_errorLogger.logError("Unknown sort type: " + sortType);
     }
 }
 
@@ -591,3 +593,11 @@ document.getElementById('show-tight').addEventListener('change', event => {
     document.getElementById("session-description-outer").style.display = display;
     document.getElementById("display-table-data-outer").style.display = display;
 });
+
+setInterval(() => {
+    if (g_errorLogger.hasErrors()) {
+        document.body.style.border = '5px solid red';
+    } else {
+        document.body.style.border = 'none';
+    }
+}, 500);

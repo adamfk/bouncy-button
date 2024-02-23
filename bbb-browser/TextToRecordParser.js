@@ -50,7 +50,7 @@ class TextToRecordParser {
 
         let startingNs = test.streamStartNs;
         if (startingNs == null) {
-            startingNs = this.fixStreamingTimingForSW_0_2_3(test);
+            startingNs = this.handleMissingStreamAtNs(test);
             test.streamStartNs = startingNs;
         }
 
@@ -88,8 +88,9 @@ class TextToRecordParser {
 
         // parse software version as string `sw version: 0.2.3`
         const swVersionMatch = /sw version\s*:\s*(.+)/i.exec(input);
-        test.swVersion = swVersionMatch[1].trim();
-        test.swVersion = DOMPurify.sanitize(test.swVersion);
+        let swVersionStr = swVersionMatch[1].trim();
+        swVersionStr = DOMPurify.sanitize(swVersionStr);
+        test.setSwVersionString(swVersionStr);
 
         // parse stream start time
         const streamStartMatch = /stream_at_ns\s*:\s*(\d+)/i.exec(input);
@@ -148,10 +149,10 @@ class TextToRecordParser {
      * @param {Test} test
      */
     static fixTiming(test) {
-        if (test.swVersion !== '0.2.3')
+        if (test.getSwVersionString() !== '0.2.3' && test.getSwVersionString() !== '0.2.4')
             return;
 
-        // Version 0.2.3 reported timer counts as 62ns instead of 62.5ns.
+        // Version 0.2.3/4 reported timer counts as 62ns instead of 62.5ns.
         // This caused us to be off by almost 1%.
         test.events.forEach(evt => {
             evt.nsec *= 62.5 / 62;
@@ -159,14 +160,15 @@ class TextToRecordParser {
     }
 
     /**
-     * Version 0.2.3 was only ever used by Adam a few times before release. We shouldn't worry much about it.
-     * It was properly fixed in 0.2.5. This workaround exists because I can't re-record some of my data for "first ever use".
+     * We believe this was properly fixed in 0.3.x.
      * @param {Test} test
      */
-    static fixStreamingTimingForSW_0_2_3(test) {
-        // fix streaming timing for software version 0.2.3
-        if (test.swVersion !== '0.2.3' && test.swVersion !== '0.2.4')
-            throw new Error('fixStreamingTimingForSW_0_2_3 only supports 0.2.3 or .4');
+    static handleMissingStreamAtNs(test) {
+        console.log('handleMissingStreamAtNs()');
+
+        // We believe we fixed this in version 0.3.x
+        if (test.swVersion.major == 0 && test.swVersion.minor >= 3)
+            g_errorLogger.logError('handleMissingStreamAtNs should have been fixed already in 0.3.x and later.');
 
         // determine how many events in buffer were timeouts
         let trailingTimeouts = test.logsTotal - test.logsUsed;
