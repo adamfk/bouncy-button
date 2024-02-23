@@ -335,7 +335,7 @@ full:
                 ms_left_for_stable--;
 
                 if (ms_left_for_stable <= 0) {
-                    if (ms_count > MS_STREAM_TIMEOUT) {
+                    if (ms_count > MS_TO_WAIT_FOR_STABLE) {
                         // `ms_count` might be less than timeout if high speed recording ended stable.
                         g_stream_unstable_ms = ms_count - MS_TO_WAIT_FOR_STABLE;
                     }
