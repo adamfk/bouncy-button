@@ -463,10 +463,19 @@ function showSectionCheckboxes(sections) {
     sections.forEach(section => {
         const bgColor = sectionColors[i];
         const fontColor = fontColors[i];
+        const checked = section.initiallyDisabled ? '' : 'checked';
+        const textDecoration = section.initiallyDisabled ? 'line-through' : 'none';
+        let description = section.description;
+        if (section.invalid) {
+            description = "Considered invalid. " + description;
+        }
+
         g_sectionStyles.set(section.id, new SectionStyle(fontColor, bgColor));
-        newHtml += `<div class="filter-option" title="${section.description} (id:${section.id})" style="background-color:${bgColor}; color:${fontColor}">
-        <label for="show-${section.id}">${section.title}</label>
-        <input type="checkbox" id="show-${section.id}" name="show-${section.id}" value="show-${section.id}" checked>
+
+
+        newHtml += `<div class="filter-option" title="${description} (id:${section.id})" style="background-color:${bgColor}; color:${fontColor}">
+        <label for="show-${section.id}" style="text-decoration:${textDecoration}">${section.title}</label>
+        <input type="checkbox" id="show-${section.id}" name="show-${section.id}" value="show-${section.id}" ${checked}>
         </div>`;
         i++;
         i %= sectionColors.length;

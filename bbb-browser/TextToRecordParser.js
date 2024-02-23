@@ -108,9 +108,14 @@ class TextToRecordParser {
         //   <description>
         //     With some description here
         //   </description>
+        //   <initially_disabled/>
+        //   <invalid/>
         // </section_start>
         const idMatch = /<id>\s*([\s\S]*?)\s*<\/id>/g.exec(input);
         const descriptionMatch = /<description>\s*([\s\S]*?)\s*<\/description>/g.exec(input);
+        const initiallyDisabledMatch = /<initially_disabled\/>/g.exec(input);
+        const invalidMatch = /<invalid\/>/g.exec(input);
+
         let id = null;
         if (idMatch == null) {
             return;
@@ -126,6 +131,16 @@ class TextToRecordParser {
         description = DOMPurify.sanitize(description);
 
         let section = new Section(id, description);
+
+        if (initiallyDisabledMatch != null) {
+            section.initiallyDisabled = true;
+        }
+
+        if (invalidMatch != null) {
+            section.invalid = true;
+            section.initiallyDisabled = true;
+        }
+
         return section;
     }
 

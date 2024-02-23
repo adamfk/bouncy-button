@@ -22,6 +22,9 @@ class Section {
         /** @type {string} */
         this.description;
 
+        this.initiallyDisabled = false;
+
+        this.invalid = false;
 
         var split = rawDescription.split(':');
         if (split.length > 1) {
