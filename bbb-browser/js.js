@@ -353,6 +353,7 @@ function decodeAndGraph() {
         plotter.plotBounceDurations("stats-press-release-durations", "Bounce Durations", selectedTests);
         plotter.plotLongestPulseDurations("stats-press-release-longest-pulse-durations", "Longest Pulse Durations", selectedTests);
         plotter.plotTransitions("stats-press-release-transitions", "Transitions", selectedTests);
+        document.getElementById('display-stats-graphs').style.display = 'block';
     }
 
     if (document.getElementById('show-summary').checked) {
