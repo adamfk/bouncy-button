@@ -115,7 +115,7 @@
 <body>
     <h1 style="margin-top: -12px;"><span id="span-title"></span>Bouncy Button Benchmark Browser <span id="bbbb-version">(v0.2.2)</span></h1>
 
-    <div id="div-input">
+    <div id="div-input" ondrop="dropHandler(event);">
         <p>Paste your data into the text area below and press the load button.</p>
         <button onclick="loadData()" style="margin-top: 5px;" >Load Data</button><br>
         <textarea id="user-data-text-input" style="width:700px;height:250px;">
