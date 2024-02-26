@@ -3,16 +3,21 @@
 ## Download
 Download this directory and open the `index.html` file in your web browser. That's it!
 
+<br>
+
 ## Load Some Data
 It comes preloaded with some example data so you can try it out right away.
 
 ![load-data](https://github.com/adamfk/bouncy-button/assets/274012/c0b850e6-874c-4bc6-8c7b-cba1cef32986)
 
-## Zoom
+<br>
+
+## Pan And Zoom
 There are controls in the top right of every graph that allow you to pan and zoom.
 
 ![zoom](https://github.com/adamfk/bouncy-button/assets/274012/c35d3c0d-3198-4199-ac08-76620c849f69)
 
+<br>
 
 ## Tight Export Mode
 You'll want to use this mode when sharing a summary of your data. It's also useful to press F11 to view the browser window in full screen first.
@@ -21,6 +26,7 @@ NOTE! Tight Export mode hides the statistics graphs and table data further down 
 
 ![tight](https://github.com/adamfk/bouncy-button/assets/274012/12887477-8ab0-42ba-add3-85241d675f9f)
 
+<br>
 
 ## Section Types
 You can choose which section types to include in the graph/analysis.
@@ -29,20 +35,28 @@ You can choose which section types to include in the graph/analysis.
 
 Sometimes a section will be crossed out. That's because it was marked invalid in the test data. Usually happens with Slow sections as they often just end up being multiple presses and not bounces.
 
+<br>
+
 ## Event Types
 Sometimes you only want to look at either presses or releases.
 
 ![event-types](https://github.com/adamfk/bouncy-button/assets/274012/96560f58-1c39-459e-8b18-596acef9c631)
+
+<br>
 
 ## Sort And Group
 Very useful to sort by duration.
 
 ![sort-and-group](https://github.com/adamfk/bouncy-button/assets/274012/aec34d85-73df-4aa5-8289-30e05b3dcf62)
 
+<br>
+
 ## Time Focus
 Mostly useful when loading huge data sets (like when you record a 8 MHz signal for self calibration).
 
 ![time-focus](https://github.com/adamfk/bouncy-button/assets/274012/104e4fbc-7a53-40dc-abc4-46c4bc4999c5)
+
+<br>
 
 ## Test ID Filter
 Allows you to include or exclude certain tests. Very useful when you want to exclude extreme tests or glitches. In the case of a glitch, you could also just delete that test from text file.
@@ -59,10 +73,14 @@ You can also `e`, `ex`, or `exclude` to exclude tests, and `i`, `in`, or `includ
 
 ![exclude](https://github.com/adamfk/bouncy-button/assets/274012/f8357cde-435b-4d52-a419-10de12a65bf6)
 
+<br>
+
 ## Stats Graphs
 Only visible when `Tight Export` mode is not enabled.
 
 ![stats](https://github.com/adamfk/bouncy-button/assets/274012/d9d63261-81fd-4dd0-81be-b868e5260321)
+
+<br>
 
 ## Table Data
 Shows some stats for each individual test. It also allows you to copy raw signal levels to your clipboard for custom analysis or graphing in excel or Plotly.
