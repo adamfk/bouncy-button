@@ -36,6 +36,7 @@ static void print_splash_screen(void) {
     print_str("  $$$$$$$  |\\$$$$$$$\\ $$ |  $$ |\\$$$$$$$\\ $$ |  $$ |$$ | $$ | $$ |\\$$$$$$$ |$$ |      $$ | \\$$\\ \n");
     print_str("  \\_______/  \\_______|\\__|  \\__| \\_______|\\__|  \\__|\\__| \\__| \\__| \\_______|\\__|      \\__|  \\__|\n");
     // print_str(" \n");
+    print_str("  <test_session_start/>\n");
     print_str("  Bouncy Button Benchmark. Version " VERSION_STR "\n");
 
     print_str("  Arduino board: "); 

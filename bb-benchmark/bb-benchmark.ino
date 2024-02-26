@@ -97,7 +97,6 @@ void setup() {
     section.section_type = SectionType_NORMAL;
     print_str("Assuming regular testing one transition at a time.\n");
     print_str("Type '?'<enter> for menu options.\n");
-    print_str("<test_session_start/>\n");
 }
 
 static void handle_commands_and_wait_for_stable() {
