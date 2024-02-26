@@ -14,5 +14,5 @@ Even though it runs on a cheap Arduino Uno/Nano, it has some pretty decent perfo
 
 This project is divided into two parts:
 
-- [Bouncy-Button-Benchmark](./bb-benchmark/README.md): an Arduino sketch that records button bounce data and sends it to a computer over the serial port.
+- [Bouncy-Button-Benchmark](./bb-benchmark/README.md): the Arduino sketch that records & sends bounce data to a computer serial port.
 - [Bouncy-Button-Benchmark-Browser](./bbb-browser/README.md): a web page that graphs and analyzes the button bounce data.
