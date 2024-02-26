@@ -103,3 +103,11 @@ Possible commands:
 ```
 
 > NOTE:`gg`, `dtg`, `nt` are not yet supported in the browser. They are currently just for your own notes.
+
+## How Accurate Is The Data Really?
+Pretty good actually! That said, the Arduino Uno and Nano use a resonator clock source accurate to around 1% so that limits our absolute accuracy.
+
+See the bottom of this button test session for interactive graphs that allow you to see how our button recordings stack up against an oscilloscope: https://github.com/adamfk/bouncy-button-data/issues/2
+
+![image](https://github.com/adamfk/bouncy-button-data/assets/274012/330320e9-8d55-476a-805a-062b67e47283)
+
