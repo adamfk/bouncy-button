@@ -1,4 +1,6 @@
-| You like big buttons and you cannot lie. You other coders can't deny.
+*You like big buttons and cannot lie. You other coders can't deny.*
+
+<br>
 
 ![image](https://github.com/adamfk/bouncy-button/assets/274012/146a55c6-3897-4910-81a9-e4a0240c7b05)
 
