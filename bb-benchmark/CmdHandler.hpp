@@ -25,7 +25,6 @@ public:
 
     Section & section;
     StatsAndConfig & stats_config;
-    uint8_t skip_wait_for_stable : 1;
 
     CmdHandler(Section & section, StatsAndConfig & stats_config) : section(section), stats_config(stats_config) {
 
@@ -109,7 +108,7 @@ public:
                 result = handle_gen_signal();
             } else if (a == 's' && b == 'w' && c == 's') {
                 print_str("Skipping waiting for stable for next test.\n");
-                this->skip_wait_for_stable = true;
+                stats_config.skip_wait_for_stable = true;
                 result = CommandResult_SUCCESS;
             } else if (a == 'e' && b == 'r' && c == 'l') {
                 print_str("Enabling raw logs.\n");

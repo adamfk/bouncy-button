@@ -112,7 +112,7 @@ static void handle_commands_and_wait_for_stable() {
     while (result == RecordDataResult_USER_INPUT) {
         cmd_handler.handle_any_user_command();
 
-        if (cmd_handler.skip_wait_for_stable) {
+        if (stats_config.skip_wait_for_stable) {
             print_str("Skipping wait for stable input.\n");
             result = RecordDataResult_SUCCESS;
         } else {
