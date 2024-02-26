@@ -1,10 +1,14 @@
 # Bouncy-Button-Benchmark
 This folder contains the Arduino sketch. Open it with the Arduino IDE (old one is best because of better terminal) and upload it to your Arduino Uno/Nano.
 
+<br>
+
 ## Arduino IDE
 The old/legacy Arduino IDE is recommended because it has a better terminal that allows you to easily select all the reported data and copy. The new terminal makes it difficult to highlight and copy hundreds of lines of serial text. You can download the legacy Arduino IDE from the [Arduino website](https://www.arduino.cc/en/Main/OldSoftwareReleases).
 
 You can also choose to use any serial program that works for you. One that logs directly to a file could be handy.
+
+<br>
 
 ## Usage
 The serial terminal will tell you what to do next. For example, it will tell you when to press the button:
@@ -57,10 +61,16 @@ New session record for max duration! Bounce them buttons.
 22 ms, 864 us, 250 ns
 ```
 
+<br>
+
+
 ## Saving The Data
 Once you are done testing, copy the data from the serial terminal and paste it into a regular text file. You can then use the [Bouncy-Button-Benchmark-Browser](../bbb-browser/README.md) to graph and analyze the data.
 
 If you are using the old Arduino IDE, you can select all the data by clicking on the terminal and pressing `Ctrl+A`. Then you can copy it by pressing `Ctrl+C`.
+
+
+<br>
 
 
 ## Section Test Types
@@ -73,10 +83,16 @@ In the below image, you can see that `Slow` presses and then `Fast` presses boun
 You can start a section test type by typing `ss` and pressing enter. You will then be prompted to enter the section type.
 
 
+<br>
+
+
 ## Sharing Your Data
 If you'd like to share your data with the world, you can simply open an issue on the [bouncy-button-data repo](https://github.com/adamfk/bouncy-button-data/issues/new/choose).
 
 I chose to use issues because it's a simple way to keep track of the data and it's easy to search and filter. It also allows anyone to easily add their data without needing to go through a pull request.
+
+
+<br>
 
 
 ## Commands
@@ -103,6 +119,9 @@ Possible commands:
 ```
 
 > NOTE:`gg`, `dtg`, `nt` are not yet supported in the browser. They are currently just for your own notes.
+
+<br>
+
 
 ## How Accurate Is The Data Really?
 Pretty good actually! That said, the Arduino Uno and Nano use a resonator clock source accurate to around 1% so that limits our absolute accuracy.
