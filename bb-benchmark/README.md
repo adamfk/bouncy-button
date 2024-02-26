@@ -1,5 +1,13 @@
 # Bouncy-Button-Benchmark
-This folder contains the Arduino sketch. Open it with the Arduino IDE (old one is best because of better terminal) and upload it to your Arduino Uno/Nano.
+This folder contains the Arduino sketch. Open it with the Arduino IDE (see below) and upload it to your Arduino Uno/Nano.
+
+<br>
+
+## Wiring
+Connect one side of the button to ground and the other side to pin 4. Disconnect everything else from the Arduino.
+
+![image](https://github.com/adamfk/bouncy-button/assets/274012/4330681e-52c2-424a-9798-b20fd8b10150)
+
 
 <br>
 
