@@ -1,6 +1,11 @@
 # Bouncy-Button-Benchmark-Browser
 
-## Download
+## Use Online
+https://adamfk.github.io/bouncy-button/bbb-browser/
+
+<br>
+
+## Use Offline
 Download this directory and open the `index.html` file in your web browser. That's it!
 
 <br>
