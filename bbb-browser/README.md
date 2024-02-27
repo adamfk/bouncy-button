@@ -1,12 +1,12 @@
 # Bouncy-Button-Benchmark-Browser
 
 ## Use Online
-[https://adamfk.github.io/bouncy-button/bbb-browser/](https://adamfk.github.io/bouncy-button/bbb-browser/)
+[https://adamfk.github.io/bouncy-button/bbb-browser/gui.html](https://adamfk.github.io/bouncy-button/bbb-browser/gui.html)
 
 <br>
 
 ## Use Offline
-Download this directory and open the `index.html` file in your web browser. That's it!
+Download this directory and open the `gui.html` file in your web browser. That's it!
 
 <br>
 
