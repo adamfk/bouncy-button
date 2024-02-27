@@ -1,5 +1,7 @@
 *You like big buttons and cannot lie. You other coders can't deny.*
 
+Try it out online: https://adamfk.github.io/bouncy-button/bbb-browser/
+
 <br>
 
 ![image](https://github.com/adamfk/bouncy-button/assets/274012/146a55c6-3897-4910-81a9-e4a0240c7b05)
@@ -25,7 +27,7 @@ See the [bottom of this button test session](https://github.com/adamfk/bouncy-bu
 This project is divided into two parts:
 
 - [Bouncy-Button-Benchmark](./bb-benchmark/README.md): the Arduino sketch that records & sends bounce data to a computer serial port.
-- [Bouncy-Button-Benchmark-Browser](./bbb-browser/README.md): a web page that graphs and analyzes the button bounce data.
+- [Bouncy-Button-Benchmark-Browser](./bbb-browser/): a web page that graphs and analyzes the button bounce data.
 
 The browser allows you to summarize and inspect the data easily.
 
