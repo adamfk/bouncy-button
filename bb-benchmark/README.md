@@ -73,7 +73,7 @@ New session record for max duration! Bounce them buttons.
 
 
 ## Saving The Data
-Once you are done testing, copy the data from the serial terminal and paste it into a regular text file. You can then use the [Bouncy-Button-Benchmark-Browser](../bbb-browser/README.md) to graph and analyze the data.
+Once you are done testing, copy the data from the serial terminal and paste it into a regular text file. You can then use the [Bouncy-Button-Benchmark-Browser](https://adamfk.github.io/bouncy-button/bb-benchmark/) to graph and analyze the data.
 
 If you are using the old Arduino IDE, you can select all the data by clicking on the terminal and pressing `Ctrl+A`. Then you can copy it by pressing `Ctrl+C`.
 
@@ -134,7 +134,7 @@ Possible commands:
 ## How Accurate Is The Data Really?
 Pretty good actually! That said, the Arduino Uno and Nano use a resonator clock source accurate to around 1% so that limits our absolute accuracy.
 
-See the bottom of this button test session for interactive graphs that allow you to see how our button recordings stack up against an oscilloscope: https://github.com/adamfk/bouncy-button-data/issues/2
+See the bottom of this button test session for interactive graphs that allow you to see how our button recordings stack up against an oscilloscope: [https://github.com/adamfk/bouncy-button-data/issues/2](https://github.com/adamfk/bouncy-button-data/issues/2)
 
 ![image](https://github.com/adamfk/bouncy-button-data/assets/274012/330320e9-8d55-476a-805a-062b67e47283)
 
