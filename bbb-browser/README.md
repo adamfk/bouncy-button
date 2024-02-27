@@ -91,11 +91,11 @@ Only visible when `Tight Export` mode is not enabled.
 Shows some stats for each individual test. It also allows you to copy raw signal levels to your clipboard for custom analysis or graphing in excel or Plotly.
 
 That's how I made these graphs comparing Arduino data to an oscilloscope's data. Note that the Arduino just records high or low. The voltages are shifted away from 0 and 5 volts to help prevent clashing with oscilloscope traces.
-- Test 132 https://plotly.com/~afk/21/
-- Test 139 https://plotly.com/~afk/23/
-- Test 131 https://plotly.com/~afk/27/
-- Test 125 https://plotly.com/~afk/25/
-- Data from https://github.com/adamfk/bouncy-button-data/issues/2
+- Test 132 [https://plotly.com/~afk/21/](https://plotly.com/~afk/21/)
+- Test 139 [https://plotly.com/~afk/23/](https://plotly.com/~afk/23/)
+- Test 131 [https://plotly.com/~afk/27/](https://plotly.com/~afk/27/)
+- Test 125 [https://plotly.com/~afk/25/](https://plotly.com/~afk/25/)
+- Data from [https://github.com/adamfk/bouncy-button-data/issues/2](https://github.com/adamfk/bouncy-button-data/issues/2)
 
 ![table-data](https://github.com/adamfk/bouncy-button/assets/274012/a0c02972-72b7-43b7-8cb4-38bc97420540)
 
