@@ -1,14 +1,15 @@
-*You like big buttons and cannot lie. You other coders can't deny.*
+<!-- *You like big buttons and cannot lie. You other coders can't deny.* -->
+Turn an Arduino Uno into a powerful button bounce analysis tool. Just add a button.
 
-Try it out online: [https://adamfk.github.io/bouncy-button/bbb-browser/](https://adamfk.github.io/bouncy-button/bbb-browser/)
+Try it out online (on a desktop): [https://adamfk.github.io/bouncy-button/bbb-browser/](https://adamfk.github.io/bouncy-button/bbb-browser/)
 
 <br>
 
-![image](https://github.com/adamfk/bouncy-button/assets/274012/146a55c6-3897-4910-81a9-e4a0240c7b05)
+[![image](https://github.com/adamfk/bouncy-button/assets/274012/146a55c6-3897-4910-81a9-e4a0240c7b05)](https://adamfk.github.io/bouncy-button/bbb-browser/)
 
 You might find this project useful if you want to characterize the bounce of a button/switch. If you are more interested in checking out the open source collection of button bounce data, you can find it at the [bouncy-button-data](https://github.com/adamfk/bouncy-button-data/) repo.
 
-Even though it runs on a cheap Arduino Uno/Nano, it has some pretty decent performance:
+Even though it runs on an inexpensive Arduino Uno/Nano, it has some pretty decent performance:
  
 | Feature                                 | Value                          |
 |-----------------------------------------|--------------------------------|
