@@ -37,9 +37,10 @@ static void print_splash_screen(void) {
     print_str("  \\_______/  \\_______|\\__|  \\__| \\_______|\\__|  \\__|\\__| \\__| \\__| \\_______|\\__|      \\__|  \\__|\n");
     // print_str(" \n");
     print_str("  <test_session_start/>\n");
-    print_str("  Bouncy Button Benchmark. Version " VERSION_STR "\n");
+    print_str("  Bouncy Button Benchmark. Version " VERSION_STR ".\n");
+    print_str("  Project URL: https://github.com/adamfk/bouncy-button\n");
 
-    print_str("  Arduino board: "); 
+    print_str("  Arduino board: ");
     #if defined(ARDUINO_AVR_UNO)
         print_str("Uno");
     #elif defined(ARDUINO_AVR_NANO)
@@ -47,18 +48,14 @@ static void print_splash_screen(void) {
     #else
         print_str("???");
     #endif
-    print_str("\n");
+    print_str(", IDE: "); print_raw(ARDUINO); print_str(", GCC: "); print_str(__VERSION__); print_str("\n");
 
     print_str("  MCU: "); 
     print_str(STRINGIFY(__AVR_DEVICE_NAME__));
-    print_str("\n");
-
-    print_str("  MCU ID: ");
+    print_str(", MCU ID: ");
     Periph::print_board_id();
+    print_str(", F_CPU: "); print_raw(F_CPU); print_str("\n");
     print_str("\n");
-
-    print_str("  F_CPU: "); print_raw(F_CPU); print_str("\n");
-    print_str("\n\n\n");
 }
 
 static void print_press_large(void) {

@@ -1,11 +1,11 @@
 #pragma once
 
-#define VERSION_STR "0.3.2"
+#define VERSION_STR "0.3.3"
 
 // debug stuff
 #define DEBUG_TOGGLE_PIN_AT_SAMPLES  0
 #define DEBUG_TOGGLE_PIN_AT_LOGS     0
-#define DEBUG_TOGGLE_CUSTOM          1
+#define DEBUG_TOGGLE_CUSTOM          0
 
 #define ENTRIES_COUNT 350
 
