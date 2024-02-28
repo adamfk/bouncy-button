@@ -1,4 +1,3 @@
-<!-- *You like big buttons and cannot lie. You other coders can't deny.* -->
 Turn an Arduino Uno into a powerful button bounce analysis tool (detects 62 nanosecond pulses).
 
 Try it out online (on a desktop): [https://adamfk.github.io/bouncy-button/bbb-browser/gui.html](https://adamfk.github.io/bouncy-button/bbb-browser/gui.html)
@@ -9,7 +8,7 @@ If you are more interested in checking out the open source collection of button 
 
 
 ## What You Need
-A button, some wires and an Arduino Uno or Nano.
+A button, some wires and an Arduino Uno/Nano. Sketch available in [./bb-benchmark](./bb-benchmark/README.md) folder.
 
 ![image](https://github.com/adamfk/bouncy-button/assets/274012/e2feec5d-9622-4019-88d0-63a3557cb8a8)
 
@@ -35,11 +34,13 @@ See the [bottom of this button test session](https://github.com/adamfk/bouncy-bu
 This project is divided into two parts:
 
 - [Bouncy-Button-Benchmark](./bb-benchmark/README.md): the Arduino sketch that records & sends bounce data to a computer serial port.
-- [Bouncy-Button-Benchmark-Browser](./bbb-browser/): a web page that graphs and analyzes the button bounce data.
+- [Bouncy-Button-Benchmark-Browser](./bbb-browser/README.md): a web page that graphs and analyzes the button bounce data.
 
 The browser allows you to summarize and inspect the data easily.
 
 ![quick-graph-then-zom](https://github.com/adamfk/bouncy-button/assets/274012/32b80c43-9965-4b8a-8767-32367a44eef9)
 
 
+## Source Code
+[https://github.com/adamfk/bouncy-button/](https://github.com/adamfk/bouncy-button/)
 

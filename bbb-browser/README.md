@@ -1,4 +1,7 @@
 # Bouncy-Button-Benchmark-Browser
+This is a web page that graphs and analyzes the button bounce data. 
+
+You can use it either online or offline.
 
 ## Use Online
 [https://adamfk.github.io/bouncy-button/bbb-browser/gui.html](https://adamfk.github.io/bouncy-button/bbb-browser/gui.html)
@@ -6,7 +9,7 @@
 <br>
 
 ## Use Offline
-Download this directory and open the `gui.html` file in your web browser. That's it!
+Download the `bbb-browser` directory from [github](https://github.com/adamfk/bouncy-button) and open the `gui.html` file in your web browser.
 
 <br>
 

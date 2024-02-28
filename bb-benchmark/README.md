@@ -1,5 +1,12 @@
 # Bouncy-Button-Benchmark
-This folder contains the Arduino sketch. Open it with the Arduino IDE (see below) and upload it to your Arduino Uno/Nano.
+The `bb-benchmark` folder contains the Arduino sketch. Open it with the Arduino IDE (see below) and upload it to your Arduino Uno/Nano.
+
+<br>
+
+## Download
+If you've already downloaded the `bb-benchmark` folder, you can skip this step, otherwise you can download from github:
+* Release zip: [https://github.com/adamfk/bouncy-button/releases](https://github.com/adamfk/bouncy-button/releases)
+* GitHub source: [https://github.com/adamfk/bouncy-button](https://github.com/adamfk/bouncy-button)
 
 <br>
 
