@@ -112,6 +112,18 @@
             display: inline-block;
         }
 
+        #mobile-warning {
+            display: none;
+            color: #ff7474;
+        }
+
+        @media (pointer:none), (pointer:coarse) {
+            #mobile-warning {
+                display: block;
+            }
+        }
+
+
     </style>
 
 </head>
@@ -120,6 +132,8 @@
     <h1 style="margin-top: -12px;"><span id="span-title"></span><a href="https://adamfk.github.io/bouncy-button/bbb-browser/">Bouncy Button Benchmark Browser</a> <span id="bbbb-version">(v0.2.2)</span></h1>
 
     <div id="div-input" ondrop="dropHandler(event);">
+        <p id="mobile-warning">Please use on a desktop (mobile not yet supported).<br>
+            You can view some collected data screen shots <a href="https://github.com/adamfk/bouncy-button-data/issues">on mobile here</a>.</p>
         <p>Paste your data into the text area below and press the load button.</p>
         <button onclick="loadData()" style="margin-top: 5px;" >Load Data</button><br>
         <textarea id="user-data-text-input" style="width:700px;height:250px;">
