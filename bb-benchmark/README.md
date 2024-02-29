@@ -80,7 +80,7 @@ New session record for max duration! Bounce them buttons.
 
 
 ## Saving The Data
-Once you are done testing, copy the data from the serial terminal and paste it into a regular text file. You can then use the [Bouncy-Button-Benchmark-Browser](https://adamfk.github.io/bouncy-button/bb-benchmark/) to graph and analyze the data.
+Once you are done testing, copy the data from the serial terminal and paste it into a regular text file. You can then use the [Bouncy-Button-Benchmark-Browser](https://github.com/adamfk/bouncy-button/tree/main/bbb-browser/README.md) to graph and analyze the data.
 
 If you are using the old Arduino IDE, you can select all the data by clicking on the terminal and pressing `Ctrl+A`. Then you can copy it by pressing `Ctrl+C`.
 
@@ -102,7 +102,7 @@ You can start a section test type by typing `ss` and pressing enter. You will th
 
 
 ## Sharing Your Data
-If you'd like to share your data with the world, you can simply open an issue on the [bouncy-button-data repo](https://github.com/adamfk/bouncy-button-data/issues/new/choose).
+If you'd like to share your data with the world, you can simply open an issue on the [bouncy-button-data repo](https://github.com/adamfk/bouncy-button-data/issues/).
 
 I chose to use issues because it's a simple way to keep track of the data and it's easy to search and filter. It also allows anyone to easily add their data without needing to go through a pull request.
 
