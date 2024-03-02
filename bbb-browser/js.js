@@ -605,10 +605,13 @@ setInterval(() => {
  * @param {InputEvent} ev 
  */
 function dropHandler(ev) {
+    console.log(ev);
+
     // Prevent default behavior (Prevent file from being opened)
     ev.preventDefault();
   
-    const divInput = document.getElementById('user-data-text-input');
+    /** @type {HTMLTextAreaElement} */
+    const textArea = document.getElementById('user-data-text-input');
 
     if (ev.dataTransfer.items) {
       // Use DataTransferItemList interface to access the file(s)
@@ -616,18 +619,18 @@ function dropHandler(ev) {
         // If dropped items aren't files, reject them
         if (item.kind === "file") {
           const file = item.getAsFile();
-          divInput.textContent = "File: " + file.name + "\n";
+          textArea.value = "File: " + file.name + "\n";
           file.text().then(text => {
-            divInput.textContent += text;
+            textArea.value += text;
           });
         }
       });
     } else {
       // Use DataTransfer interface to access the file(s)
       [...ev.dataTransfer.files].forEach((file, i) => {
-        divInput.textContent = "File: " + file.name + "\n";
+        textArea.value = "File: " + file.name + "\n";
         file.text().then(text => {
-          divInput.textContent += text;
+          textArea.value += text;
         });
       });
     }
