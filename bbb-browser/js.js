@@ -349,6 +349,8 @@ function decodeAndGraph() {
     tableDataInnerDiv.innerHTML = dataTableMaker.html;
 
     {
+        showStatsText(selectedTests);
+
         const plotter = new BoxPlotter();
         plotter.plotBounceDurations("stats-press-release-durations", "Bounce Durations", selectedTests);
         plotter.plotLongestPulseDurations("stats-press-release-longest-pulse-durations", "Longest Pulse Durations", selectedTests);
@@ -652,4 +654,30 @@ function loadFileData(file) {
     file.text().then(text => {
         dataInputTextArea.value += text;
     });
+}
+
+/**
+ * @param {Test[]} selectedTests
+ */
+function showStatsText(selectedTests) {
+    var testsWithBounceOver20ms = 0;
+    var testsWithBounceOver10ms = 0;
+    var testsWithBounceOver5ms = 0;
+
+    selectedTests.forEach(test => {
+        if (test.getDurationNs() > 20*1000*1000) {
+            testsWithBounceOver20ms++;
+        }
+        if (test.getDurationNs() > 10*1000*1000) {
+            testsWithBounceOver10ms++;
+        }
+        if (test.getDurationNs() > 5*1000*1000) {
+            testsWithBounceOver5ms++;
+        }
+    });
+
+    var text = `Tests with bounce over 20ms: ${testsWithBounceOver20ms}/${selectedTests.length} (${(testsWithBounceOver20ms/selectedTests.length*100).toFixed(2)}%)<br>`;
+    text += `Tests with bounce over 10ms: ${testsWithBounceOver10ms}/${selectedTests.length} (${(testsWithBounceOver10ms/selectedTests.length*100).toFixed(2)}%)<br>`;
+    text += `Tests with bounce over 5ms: ${testsWithBounceOver5ms}/${selectedTests.length} (${(testsWithBounceOver5ms/selectedTests.length*100).toFixed(2)}%)<br>`;
+    document.getElementById("stats-text").innerHTML = text;
 }
