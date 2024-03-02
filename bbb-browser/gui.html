@@ -129,13 +129,23 @@
 </head>
 
 <body>
-    <h1 style="margin-top: -12px;"><span id="span-title"></span><a href="https://adamfk.github.io/bouncy-button/bbb-browser/">Bouncy Button Benchmark Browser</a> <span id="bbbb-version">(v0.2.3)</span></h1>
+    <h1 style="margin-top: -12px;"><span id="span-title"></span><a href="https://adamfk.github.io/bouncy-button/bbb-browser/">Bouncy Button Benchmark Browser</a> <span id="bbbb-version">(v0.2.4)</span></h1>
 
     <div id="div-input" ondrop="dropHandler(event);">
         <p id="mobile-warning">Please use on a desktop (mobile not yet supported).<br>
             You can view some collected data screen shots <a href="https://github.com/adamfk/bouncy-button-data/issues">on mobile here</a>.</p>
-        <p>Paste your data into the text area below and press the load button.</p>
-        <button onclick="loadData()" style="margin-top: 5px;" >Load Data</button><br>
+        <p>There are 4 ways to load data:
+            <ol>
+                <li>Demo mode - just use the sample data already loaded.</li>
+                <li>From clipboard - paste your data into the text box below.</li>
+                <li>From local file - Click the "Import File" and select your file.</li>
+                <li>From URL - Click the "Import File" and paste the file URL into the file selector.</li>
+            </ol>
+            Once you have your data loaded, click "Parse Below Data".
+        </p>
+        <button title="Works with URLs and local files." onclick="importFile()" style="margin-top: 5px;" >Import File</button>
+        <button onclick="parseUserData()" style="margin-top: 5px;">Parse Below Data</button>
+        <br>
         <textarea id="user-data-text-input" style="width:700px;height:250px;">
         </textarea>
     </div>

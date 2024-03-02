@@ -370,7 +370,7 @@ function decodeAndGraph() {
 }
 
 
-function loadData() {
+function parseUserData() {
     document.getElementById('div-input').style.display = 'none';
     document.getElementById('div-display').style.display = 'block';
     document.getElementById('display-stats-graphs').style.display = 'none';
@@ -600,6 +600,10 @@ setInterval(() => {
     }
 }, 500);
 
+
+/** @type {HTMLTextAreaElement} */
+const dataInputTextArea = document.getElementById('user-data-text-input');
+
 /**
  * 
  * @param {InputEvent} ev 
@@ -609,30 +613,43 @@ function dropHandler(ev) {
 
     // Prevent default behavior (Prevent file from being opened)
     ev.preventDefault();
-  
-    /** @type {HTMLTextAreaElement} */
-    const textArea = document.getElementById('user-data-text-input');
 
     if (ev.dataTransfer.items) {
-      // Use DataTransferItemList interface to access the file(s)
-      [...ev.dataTransfer.items].forEach((item, i) => {
-        // If dropped items aren't files, reject them
-        if (item.kind === "file") {
-          const file = item.getAsFile();
-          textArea.value = "File: " + file.name + "\n";
-          file.text().then(text => {
-            textArea.value += text;
-          });
-        }
-      });
-    } else {
-      // Use DataTransfer interface to access the file(s)
-      [...ev.dataTransfer.files].forEach((file, i) => {
-        textArea.value = "File: " + file.name + "\n";
-        file.text().then(text => {
-          textArea.value += text;
+        [...ev.dataTransfer.items].forEach((item) => {
+            if (item.kind === "file") {
+                const file = item.getAsFile();
+                loadFileData(file);
+            }
         });
-      });
+    } else {
+        [...ev.dataTransfer.files].forEach((file) => {
+            loadFileData(file);
+        });
     }
-  }
-  
+}
+
+function importFile() {
+    let input = document.createElement('input');
+    input.type = 'file';
+    input.onchange = _ => {
+        let files = Array.from(input.files);
+        if (files.length != 1) {
+            alert("Please select exactly one file.");
+            return;
+        }
+
+        let file = files[0];
+        loadFileData(file);
+    };
+    input.click();
+}
+
+/**
+ * @param {File} file
+ */
+function loadFileData(file) {
+    dataInputTextArea.value = "File: " + file.name + "\n";
+    file.text().then(text => {
+        dataInputTextArea.value += text;
+    });
+}
