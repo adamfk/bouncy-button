@@ -4,7 +4,7 @@ The `bb-benchmark` folder contains the Arduino sketch. Open it with the Arduino 
 <br>
 
 ## Download
-If you've already downloaded the `bb-benchmark` folder, you can skip this step, otherwise you can download from github:
+If you've already downloaded the `bb-benchmark` folder, you can skip this step, otherwise you can download it from github:
 * Release zip: [https://github.com/adamfk/bouncy-button/releases](https://github.com/adamfk/bouncy-button/releases)
 * GitHub source: [https://github.com/adamfk/bouncy-button](https://github.com/adamfk/bouncy-button)
 
@@ -12,6 +12,8 @@ If you've already downloaded the `bb-benchmark` folder, you can skip this step, 
 
 ## Wiring
 Connect one side of the button to ground and the other side to pin 4. Disconnect everything else from the Arduino.
+
+The program uses an internal pull-up resistor by default. You can send a serial command to disable the internal pull-up if you want to connect an external pull-up instead.
 
 ![image](https://github.com/adamfk/bouncy-button/assets/274012/4330681e-52c2-424a-9798-b20fd8b10150)
 
@@ -26,7 +28,12 @@ You can also choose to use any serial program that works for you. One that logs 
 <br>
 
 ## Usage
-The serial terminal will tell you what to do next. For example, it will tell you when to press the button:
+Open the Arduino Serial Monitor (AKA serial terminal) with the following settings:
+
+![image](https://github.com/adamfk/bouncy-button-data/assets/274012/f71eeae2-2327-4d9f-8e17-ed9fed061b07)
+
+
+The serial terminal will tell you what to do next. For example, it will tell you when to press the button (keep holding it) and when to release it:
     
 ```
 #################### Test #1 ####################
@@ -76,11 +83,25 @@ New session record for max duration! Bounce them buttons.
 22 ms, 864 us, 250 ns
 ```
 
+When it's time to release the button, it will print:
+```
+#################### Test #2 ####################
+Section count: 2, type: "Normal"
+Waiting for stable input... good.
+          _ 
+         | | 
+ _ __ ___| | ___  __ _ ___  ___ 
+| '__/ _ \ |/ _ \/ _` / __|/ _ \
+| | |  __/ |  __/ (_| \__ \  __/
+|_|  \___|_|\___|\__,_|___/\___|
+Release the button (it is currently pressed == logic low)
+```
+
 <br>
 
 
 ## Saving The Data
-Once you are done testing, copy the data from the serial terminal and paste it into a regular text file. You can then use the [Bouncy-Button-Benchmark-Browser](https://github.com/adamfk/bouncy-button/tree/main/bbb-browser/README.md) to graph and analyze the data.
+Once you are done testing, copy the data from the your serial terminal and paste it into a regular text file. You can then use the [Bouncy-Button-Benchmark-Browser](../bbb-browser/README.md) to graph and analyze the data.
 
 If you are using the old Arduino IDE, you can select all the data by clicking on the terminal and pressing `Ctrl+A`. Then you can copy it by pressing `Ctrl+C`.
 
@@ -103,8 +124,6 @@ You can start a section test type by typing `ss` and pressing enter. You will th
 
 ## Sharing Your Data
 If you'd like to share your data with the world, you can simply open an issue on the [bouncy-button-data repo](https://github.com/adamfk/bouncy-button-data/issues/).
-
-I chose to use issues because it's a simple way to keep track of the data and it's easy to search and filter. It also allows anyone to easily add their data without needing to go through a pull request.
 
 
 <br>
