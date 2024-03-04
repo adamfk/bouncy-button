@@ -80,3 +80,7 @@ This project is divided into two parts:
 ## Source Code
 [https://github.com/adamfk/bouncy-button/](https://github.com/adamfk/bouncy-button/)
 
+<br>
+
+## FAQ
+See [here](https://github.com/adamfk/bouncy-button/blob/main/faq.md).
