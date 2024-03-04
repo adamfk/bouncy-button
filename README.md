@@ -83,4 +83,4 @@ This project is divided into two parts:
 <br>
 
 ## FAQ
-See [here](https://github.com/adamfk/bouncy-button/blob/main/faq.md).
+See [here](./faq.md).
