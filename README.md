@@ -40,6 +40,8 @@ I got out my digital oscilloscope and started testing the problematic button. I 
 
 Using my PicoScope, I also didn't have an easy way to compare bounces or create a good summary. I could use the persistence feature, but it ended up being a bit of a mess of colors.
 
+![image](https://github.com/adamfk/bouncy-button/assets/274012/f8af9fde-45ce-42ae-b2f9-026f88806c64)
+
 I thought back to Jack's article where he states: *"Many of the switches exhibited quite wild and unexpected behavior. Bounces of under 100 nsec were common [...]. No reasonable micro could reliably capture these sorts of transitions, so I abandoned that plan"*.
 
 I wondered if I could make use of an AVR/Arduino's edge counting peripheral. I hoped that if I could use cheap and common hardware (like an Arduino UNO) to capture button bounce data, maybe a few other people would help me build up an [open source database of button bounce behavior](https://github.com/adamfk/bouncy-button-data).
@@ -53,15 +55,17 @@ Many hours later, we have a very capable tool for recording and analyzing button
  
 | Feature                                 | Value                          |
 |-----------------------------------------|--------------------------------|
-| Sample period                           | ~2.5 microseconds              |
+| Sample period                           | 1.25 - 2.5 microseconds        |
 | Minimum detectable bounce               | 62.5 nanoseconds               |
 | Maximum recorded/streamed data duration | 2 seconds                      |
+
+See also [https://github.com/adamfk/bouncy-button/blob/main/faq.md#performance-accuracy-stuff](https://github.com/adamfk/bouncy-button/blob/main/faq.md#performance-accuracy-stuff)
 
 <br>
 
 
 ## How Accurate Is The Data Really?
-Pretty good! However, the Arduino Uno/Nano use a resonator clock which limits our absolute accuracy to around 0.5%.
+Pretty good! However, the Arduino Uno/Nano use a resonator clock which limits our absolute accuracy to around 1%.
 
 See the [bottom of this button test session](https://github.com/adamfk/bouncy-button-data/issues/2) for interactive graphs that compare our button recordings against an oscilloscope.
 
