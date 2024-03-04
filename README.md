@@ -59,7 +59,7 @@ Many hours later, we have a very capable tool for recording and analyzing button
 | Minimum detectable bounce               | 62.5 nanoseconds               |
 | Maximum recorded/streamed data duration | 2 seconds                      |
 
-See also [https://github.com/adamfk/bouncy-button/blob/main/faq.md#performance-accuracy-stuff](https://github.com/adamfk/bouncy-button/blob/main/faq.md#performance-accuracy-stuff)
+See also [./faq.md#performance-accuracy-stuff](./faq.md#performance-accuracy-stuff)
 
 <br>
 
