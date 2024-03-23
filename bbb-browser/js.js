@@ -321,6 +321,24 @@ function decodeAndGraph() {
         sortTests(selectedTests);
     }
 
+    // limit displayed tests
+    {
+        /** @type {string} */
+        let shownLimitStr =  document.getElementById('shown-limit').value;
+        let shownLimit = parseInt(shownLimitStr);
+        if (Number.isFinite(shownLimit)) {
+            if (shownLimit > 0)
+            {
+                selectedTests = selectedTests.slice(0, shownLimit);
+            }
+            else if (shownLimit < 0)
+            {
+                // negative means from the end
+                selectedTests = selectedTests.slice(shownLimit);
+            }
+        }
+    }
+
     // decide if we should display the waterfall chart
     if (document.getElementById("show-waterfall").checked) {
         if (isTightMode()) {

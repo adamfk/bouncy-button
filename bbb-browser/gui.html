@@ -129,7 +129,7 @@
 </head>
 
 <body>
-    <h1 style="margin-top: -12px;"><span id="span-title"></span><a href="https://adamfk.github.io/bouncy-button/bbb-browser/">Bouncy Button Benchmark Browser</a> <span id="bbbb-version">(v0.2.5)</span></h1>
+    <h1 style="margin-top: -12px;"><span id="span-title"></span><a href="https://adamfk.github.io/bouncy-button/bbb-browser/">Bouncy Button Benchmark Browser</a> <span id="bbbb-version">(v0.3.0)</span></h1>
 
     <div id="div-input" ondrop="dropHandler(event);">
         <p id="mobile-warning">Please use on a desktop (mobile not yet supported).<br>
@@ -218,23 +218,24 @@
         </div>
     
         <!-- group by none, section type, press/release -->
-        <b>Group by: </b>
-        <select id="group-by">
-            <option value="none">None</option>
-            <option value="section-type">Section Type</option>
-            <option value="press-release">Press/Release</option>
+        <!-- <b>Group by: </b> -->
+        <select id="group-by" title="Allows visual grouping of tests.">
+            <option value="none">group:None</option>
+            <option value="section-type">group:Section Type</option>
+            <option value="press-release">group:Press/Release</option>
         </select>
     
         <!-- sort by drop down for duration or test order -->
-        <b>Sort by: </b>
-        <select id="sort-by">
-            <option value="test-order">Test Order</option>
-            <option value="duration">Duration</option>
-            <option value="transition-count">Transitions</option>
+        <!-- <b>Sort by: </b> -->
+        <select id="sort-by" title="Allows sorting display order.">
+            <option value="test-order">sort:Test Order</option>
+            <option value="duration">sort:Duration</option>
+            <option value="transition-count">sort:Transitions</option>
         </select>
 
         <input type="text" id="focus-region-input" style="width: 75px;" placeholder="Time Focus" title="ex input: '900us - 915us'"/>
         <input type="text" id="test-id-filter-input" style="width: 75px;" placeholder="Test ID Filter" title="ex input: '1,2-30,50-, ex 4 8-12'"/>
+        <input type="text" id="shown-limit" style="width: 35px;" placeholder="Limit" title="Limit the number of tests shown/analyzed starting from start (+) or end (-) of tests.&#010;ex: '10' will limit to first 10.&#010;ex: '-10' will limit to last 10.&#010;Applied after filtering and sorting. Useful when lots of data/transitions."/>
         
         <!-- buttons -->
         <br>
