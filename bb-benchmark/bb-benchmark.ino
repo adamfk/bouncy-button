@@ -114,6 +114,7 @@ static void handle_commands_and_wait_for_stable() {
 
         if (stats_config.skip_wait_for_stable) {
             print_str("Skipping wait for stable input.\n");
+            stats_config.skip_wait_for_stable = false; // need to reset this for next time
             result = RecordDataResult_SUCCESS;
         } else {
             print_str("Waiting for stable input...");
