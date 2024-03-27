@@ -346,6 +346,7 @@ public:
         print_str("  f2 - Generate 8 MHz output, 50% duty cycle, 62.5ns high/low, 125 ns period.\n");
         print_str("  f3 - Generate 4 MHz output, 50% duty cycle, 125 ns high/low, 250 ns period.\n");
         print_str("  f4 - Generate 2.66666 MHz output, 50% duty cycle, 187.5 ns high/low, 375 ns period.\n");
+        print_str("  a <0-255> - `Freq = 16 MHz / (2 * 1 * (1 + <0-255>))`. Ranges from 8 MHz to 31.25 kHz.\n");
         print_str("  s <0-255> - `Freq = 16 MHz / (2 * 1024 * (1 + <0-255>))`. Ranges from 7.8 KHz to 30.5 Hz.\n");
         print_str("\n");
         print_str("Keep in mind that Arduino UNOs/nanos have 1% clock accuracy\n\n");
@@ -371,28 +372,49 @@ public:
                 print_str("Generating signal f"); print_raw((char)a); print_str("\n\n");
             }
 
-        } else if (a == 's') {
+        } else if (a == 's' || a == 'a') {
             skip_over_whitespace();
-
-            char buffer[4];
-            read_word_into_buffer(buffer, sizeof(buffer));
-            int value = atoi(buffer);
-            if (value < 0 || value > 255) {
-                print_str("Invalid value. Must be 0-255.\n");
-                result = CommandResult_BAD_COMMAND_ARG;
+            uint8_t value;
+            result = read_u8(&value);
+            if (result != CommandResult_SUCCESS) {
                 return result;
             }
             
             // cast result to int before printing to avoid extra memory allocation
-            float hz = Periph::generate_slow_custom(value);
-            print_str("Generating signal"); print_raw(a); print_str("\n");
+            float hz;
+            
+            if (a == 's')
+                hz = Periph::generate_slow_custom(value);
+            else if (a == 'a')
+                hz = Periph::generate_fast_custom(value);
+            else {
+                hz = 0;
+                result = CommandResult_BAD_COMMAND;
+            }
+
+            print_str("Generating signal '"); print_raw((char)a); print_str("'\n");
             print_str("  Frequency: "); print_raw((uint32_t)hz); print_str(" Hz\n");
-            print_str("  Period: "); print_raw((uint32_t)(1000000 / hz)); print_str(" usec\n\n");
+            print_str("  Period: "); print_raw((uint32_t)(1000000 / hz)); print_str(" usec\n");
+            print_str("  Period: "); print_raw((uint32_t)(1000000000 / hz)); print_str(" nsec\n");
+            print_str("\n");
         } else {
             result = CommandResult_BAD_COMMAND_ARG;
         }
 
         return result;
+    }
+
+    static CommandResult read_u8(uint8_t* value_ptr)
+    {
+        char buffer[4];
+        read_word_into_buffer(buffer, sizeof(buffer));
+        int value = atoi(buffer);
+        if (value < 0 || value > 255) {
+            print_str("Invalid value. Must be 0-255.\n");
+            return CommandResult_BAD_COMMAND_ARG;
+        }
+        *value_ptr = (uint8_t)value;
+        return CommandResult_SUCCESS;
     }
 
 };

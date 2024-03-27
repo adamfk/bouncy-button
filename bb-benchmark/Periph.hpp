@@ -175,6 +175,23 @@ class Periph {
         pinMode(SIGNAL_GEN_PIN, OUTPUT);
     }
 
+    // if value = 0, frequency = 8 MHz
+    // if value = 255, frequency = 31.25 kHz
+    static float generate_fast_custom(uint8_t value) {
+        pinMode(SIGNAL_GEN_PIN, INPUT);
+
+        // F = 16 MHz / (2 * Prescaler * (1 + OCR2A))
+        // F = 16 MHz / (2 * 1024 * (1 + <value>)) = 30.51757813 Hz or 32.7680 ms period
+        TCCR2A = _BV(COM2A0) | _BV(WGM21);  // CTC mode, toggle on match
+        TCCR2B = _BV(CS20);   // No prescaler
+        OCR2A = value;
+
+        pinMode(SIGNAL_GEN_PIN, OUTPUT);
+
+        float hz = F_CPU * 1.0f / (2 * 1 * (1.0f + value));
+        return hz;
+    }
+
     // if value = 0, frequency = 7812.50 Hz
     // if value = 255, frequency = 30.52 Hz
     static float generate_slow_custom(uint8_t value) {
