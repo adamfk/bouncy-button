@@ -129,7 +129,7 @@
 </head>
 
 <body>
-    <h1 style="margin-top: -12px;"><span id="span-title"></span><a href="https://adamfk.github.io/bouncy-button/bbb-browser/">Bouncy Button Benchmark Browser</a> <span id="bbbb-version">(v0.3.0)</span></h1>
+    <h1 style="margin-top: -12px;"><span id="span-title"></span><a href="https://adamfk.github.io/bouncy-button/bbb-browser/">Bouncy Button Benchmark Browser</a> <span id="bbbb-version">(v0.4.0)</span></h1>
 
     <div id="div-input" ondrop="dropHandler(event);">
         <p id="mobile-warning">Please use on a desktop (mobile not yet supported).<br>
@@ -144,6 +144,8 @@
             Once you have your data loaded, click "Parse Below Data".
         </p>
         <button title="Works with URLs and local files." onclick="importFile()" style="margin-top: 5px;" >Import File</button>
+        <button title="Useful before pasting in your own data." onclick="clearUserData()" style="margin-top: 5px;">Clear Below Data</button>
+        ⇒
         <button onclick="parseUserData()" style="margin-top: 5px;">Parse Below Data</button>
         <br>
         <textarea id="user-data-text-input" style="width:700px;height:250px;">

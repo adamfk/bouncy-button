@@ -390,6 +390,10 @@ function decodeAndGraph() {
 }
 
 
+function clearUserData() {
+    document.getElementById('user-data-text-input').value = '';
+}
+
 function parseUserData() {
     document.getElementById('div-input').style.display = 'none';
     document.getElementById('div-display').style.display = 'block';
