@@ -47,6 +47,9 @@ class Test {
         /** @type {number} */
         this.longestPulseNs = 0;
 
+        /** @type {number} */
+        this.shortestPulseNs = 0;
+
         // we sometimes limit focus to a specific time span.
         // required for graphing 8 MHz self calibration tests as they have a HUGE number of events.
         // we sometimes limit to max number of levels as well.

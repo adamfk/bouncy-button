@@ -129,7 +129,7 @@
 </head>
 
 <body>
-    <h1 style="margin-top: -12px;"><span id="span-title"></span><a href="https://adamfk.github.io/bouncy-button/bbb-browser/">Bouncy Button Benchmark Browser</a> <span id="bbbb-version">(v0.4.0)</span></h1>
+    <h1 style="margin-top: -12px;"><span id="span-title"></span><a href="https://adamfk.github.io/bouncy-button/bbb-browser/">Bouncy Button Benchmark Browser</a> <span id="bbbb-version">(v0.5.0)</span></h1>
 
     <div id="div-input" ondrop="dropHandler(event);">
         <p id="mobile-warning">Please use on a desktop (mobile not yet supported).<br>
@@ -172,6 +172,7 @@
             <b class="click-to-scroll">Test count: </b> <span id="loaded-data-test-count">0</span>,
             <b>Total event count: </b> <span id="loaded-data-total-event-count">0</span>,
             <b title="rough estimate">Total edge count: </b> <span title="rough estimate" id="loaded-data-total-edge-count">0</span>,
+            <span id="session-stats-shortest-pulse"></span>
             <div id="loaded-data-warnings-outer" style="display: inline;">
                 <b>Warnings: </b> <span id="loaded-data-warnings" style="color: #ffff21;">none</span>, 
             </div>
@@ -322,6 +323,9 @@
 <script src="js.js"></script>   <!-- allows body to be loaded -->
 
 <script src="startingDataText.js"></script>
+
+<link href="sortable.min.css" rel="stylesheet" />
+<script src="sortable.min.js"></script>
 
 <script>
     document.getElementById('user-data-text-input').innerHTML = startingDataText;

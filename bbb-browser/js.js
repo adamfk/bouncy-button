@@ -358,6 +358,7 @@ function decodeAndGraph() {
 
     displayTableDataDiv.style.display = 'block'; // show it
 
+    // run data table maker always as it calculates some stats
     const dataTableMaker = new DataTableMaker(g_sectionStyles);
     selectedTests.reverse().forEach(test => {
         dataTableMaker.addTest(test);
@@ -386,6 +387,23 @@ function decodeAndGraph() {
         document.getElementById('display-summary-inner').innerHTML = summaryTableMaker.html;
     } else {
         document.getElementById('display-summary').style.display = 'none';
+    }
+
+    {
+        // get shortest pulse for all tests
+        let shortestPulseNs = Number.MAX_SAFE_INTEGER;
+        selectedTests.forEach(test => {
+            if (test.shortestPulseNs < shortestPulseNs) {
+                shortestPulseNs = test.shortestPulseNs;
+            }
+        });
+
+        const span = document.getElementById("session-stats-shortest-pulse");
+        if (shortestPulseNs == Number.MAX_SAFE_INTEGER) {
+            span.innerText = "";
+        } else {
+            span.innerText = "Shortest Pulse: " + Grapher.formatMicroseconds(shortestPulseNs / 1000, 3, " ");
+        }
     }
 }
 
@@ -468,6 +486,7 @@ function unloadData() {
     document.getElementById("stats-press-release-durations").innerHTML = '';
     document.getElementById("stats-press-release-longest-pulse-durations").innerHTML = '';
     document.getElementById("stats-press-release-transitions").innerHTML = '';
+    document.getElementById("session-stats-shortest-pulse").innerHTML = '';
 
     waterfallChartDiv.innerHTML = '';
     tableDataInnerDiv.innerHTML = '';
