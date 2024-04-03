@@ -348,6 +348,7 @@ public:
         print_str("  f4 - Generate 2.66666 MHz output, 50% duty cycle, 187.5 ns high/low, 375 ns period.\n");
         print_str("  a <0-255> - `Freq = 16 MHz / (2 * 1 * (1 + <0-255>))`. Ranges from 8 MHz to 31.25 kHz.\n");
         print_str("  s <0-255> - `Freq = 16 MHz / (2 * 1024 * (1 + <0-255>))`. Ranges from 7.8 KHz to 30.5 Hz.\n");
+        print_str("  p <0-7> - Set prescaler. 0->0, 1->1, 2->8, 3->32, 4->64, 5->128, 6->256, 7->1024\n");
         print_str("\n");
         print_str("Keep in mind that Arduino UNOs/nanos have 1% clock accuracy\n\n");
 
@@ -396,6 +397,21 @@ public:
             print_str("  Frequency: "); print_raw((uint32_t)hz); print_str(" Hz\n");
             print_str("  Period: "); print_raw((uint32_t)(1000000 / hz)); print_str(" usec\n");
             print_str("  Period: "); print_raw((uint32_t)(1000000000 / hz)); print_str(" nsec\n");
+            print_str("\n");
+        } else if (a == 'p') {
+            skip_over_whitespace();
+            uint8_t value;
+            result = read_u8(&value);
+            if (result != CommandResult_SUCCESS) {
+                return result;
+            }
+            
+            if (!Periph::set_prescaler(value)) {
+                result = CommandResult_BAD_COMMAND;
+            } else {
+                print_str("Prescaler set with arg "); print_raw(value); print_str("\n");
+                result = CommandResult_SUCCESS;
+            }
             print_str("\n");
         } else {
             result = CommandResult_BAD_COMMAND_ARG;

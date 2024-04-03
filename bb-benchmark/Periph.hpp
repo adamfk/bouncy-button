@@ -142,6 +142,28 @@ class Periph {
         pinMode(SIGNAL_GEN_PIN, OUTPUT);
     }
 
+    // 0: no clock source (Timer/Counter stopped)
+    // 1: clk/1 (no prescaling)
+    // 2: clk/8
+    // 3: clk/32
+    // 4: clk/64
+    // 5: clk/128
+    // 6: clk/256
+    // 7: clk/1024
+    static bool set_prescaler(uint8_t prescaler) {
+        const uint8_t prescaler_mask = _BV(CS22) | _BV(CS21) | _BV(CS20);
+        static_assert(prescaler_mask == 0b111, "required for following if statement to work correctly");
+
+        // make sure we don't set the prescaler to an invalid value
+        if (prescaler > prescaler_mask)
+            return false;
+
+        TCCR2B &= ~prescaler_mask;
+        TCCR2B |= prescaler;
+
+        return true;
+    }
+
     static void generate_8MHz(void) {
         pinMode(SIGNAL_GEN_PIN, INPUT);
 
