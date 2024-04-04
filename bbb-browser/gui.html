@@ -129,7 +129,7 @@
 </head>
 
 <body>
-    <h1 style="margin-top: -12px;"><span id="span-title"></span><a href="https://adamfk.github.io/bouncy-button/bbb-browser/">Bouncy Button Benchmark Browser</a> <span id="bbbb-version">(v0.5.0)</span></h1>
+    <h1 style="margin-top: -12px;"><span id="span-title"></span><a href="https://adamfk.github.io/bouncy-button/bbb-browser/">Bouncy Button Benchmark Browser</a> <span id="bbbb-version">(v0.5.1)</span></h1>
 
     <div id="div-input" ondrop="dropHandler(event);">
         <p id="mobile-warning">Please use on a desktop (mobile not yet supported).<br>
@@ -243,7 +243,6 @@
         <!-- buttons -->
         <br>
         <button onclick="decodeAndGraph()" style="margin-top: 5px;" >Graph & Analyze</button>
-        <button onclick="unloadData()" style="margin-top: 5px;" >Unload Data</button>
     
         <div title="Show Summary" style="display: inline-block; margin-right: 8px;">
             <label for="show-summary">Summary</label>
@@ -259,6 +258,8 @@
             <label for="show-tight">Tight Export</label>
             <input type="checkbox" id="show-tight" name="show-tight" value="show-tight">
         </div>
+
+        <button onclick="unloadData()" style="margin-top: 5px;" >Unload Data</button>
 
 
         <!-- display stuff -->
@@ -285,6 +286,7 @@
                 <div class="stats-graph" id="stats-press-release-durations" style="height:50vh"></div>
                 <div class="stats-graph" id="stats-press-release-longest-pulse-durations" style="height:50vh"></div>
                 <div class="stats-graph" id="stats-press-release-transitions" style="height:50vh"></div>
+                <div class="stats-graph" id="stats-press-release-pulse-width" style="height:50vh"></div>
             </div>
         </div>
         

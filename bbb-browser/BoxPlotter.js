@@ -125,10 +125,58 @@ class BoxPlotter {
     }
 
     /**
+     * @param {string} divId
+     * @param {string} name
+     * @param {Test[]} tests
+     */
+    plotPulseWidth(divId, name, tests) {
+        let pressData = [];
+        let releaseData = [];
+        tests.forEach(test => {
+            const data = test.isPress() ? pressData : releaseData;
+
+            test.levelRecords.forEach((levelRecord, index) => {
+                if (index === 0 && !test.preTruncatedLevels)
+                    return;
+
+                if (Number.isFinite(levelRecord.nsecDuration) === false)
+                    return;
+
+                data.push(levelRecord.nsecDuration / 1000);
+            });
+        });
+
+        let data = [
+            {
+                x: releaseData,
+                type: 'box',
+                name: 'Release',
+                marker: {
+                    color: '#EEEEEE',
+                },
+                boxmean: 'sd',
+            },
+            {
+                x: pressData,
+                type: 'box',
+                name: 'Press',
+                marker: {
+                    color: '#a10000'
+                },
+                boxmean: 'sd'
+            },
+        ];
+
+        let layout = this.getLayout(name);
+        Plotly.newPlot(divId, data, layout, Grapher.getPlotlyDefaultOptions());
+    }
+
+    /**
      * @param {string} title
      */
     getLayout(title) {
         return {
+            showlegend: false,
             title: title,
             yaxis: {
                 // dark mode from https://jsfiddle.net/3hfq7ast/
@@ -144,12 +192,13 @@ class BoxPlotter {
                 "linecolor": "#506784",
                 "zerolinecolor": "#283442",
                 "zerolinewidth": 2,
+                // range: [0, undefined], // has no effect
             },
             // margin: { t: 0 },
             legend: {
                 orientation: 'h',
                 x: 0.0,
-                y: 1.02
+                y: 1.02,
             },
             // dark mode from https://jsfiddle.net/3hfq7ast/
             annotationdefaults: {

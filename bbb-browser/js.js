@@ -371,9 +371,11 @@ function decodeAndGraph() {
         showStatsText(selectedTests);
 
         const plotter = new BoxPlotter();
-        plotter.plotBounceDurations("stats-press-release-durations", "Bounce Durations", selectedTests);
+        plotter.plotBounceDurations("stats-press-release-durations", "Max Bounce Durations", selectedTests);
         plotter.plotLongestPulseDurations("stats-press-release-longest-pulse-durations", "Longest Pulse Durations", selectedTests);
-        plotter.plotTransitions("stats-press-release-transitions", "Transitions", selectedTests);
+        plotter.plotTransitions("stats-press-release-transitions", "Transitions Per Activation", selectedTests);
+        plotter.plotPulseWidth("stats-press-release-pulse-width", "Pulse Width", selectedTests);
+
         document.getElementById('display-stats-graphs').style.display = 'block';
     }
 
@@ -486,6 +488,7 @@ function unloadData() {
     document.getElementById("stats-press-release-durations").innerHTML = '';
     document.getElementById("stats-press-release-longest-pulse-durations").innerHTML = '';
     document.getElementById("stats-press-release-transitions").innerHTML = '';
+    document.getElementById("stats-press-release-pulse-width").innerHTML = '';
     document.getElementById("session-stats-shortest-pulse").innerHTML = '';
 
     waterfallChartDiv.innerHTML = '';
