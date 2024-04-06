@@ -16,7 +16,7 @@ class DataTableMaker {
             "<th>Section Id</th>\n" +
             "<th>Test Id</th>\n" +
             "<th>Type</th>\n" +
-            "<th class='duration'>Bounce Duration [µs]</th>\n" +
+            `<th class='duration' title="The time it took for the button signal to reach a stable state">Bounce Duration [µs]</th>\n` +
             "<th title='Transitions count'>Transitions</th>\n" +
             "<th class='duration' title='Longest uninterrupted pulse for this test'  >Longest Pulse [µs]</th>\n" +
             "<th class='duration' title='Shortest pulse for this test'  >Shortest Pulse [µs]</th>\n" +

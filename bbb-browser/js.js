@@ -371,7 +371,7 @@ function decodeAndGraph() {
         showStatsText(selectedTests);
 
         const plotter = new BoxPlotter();
-        plotter.plotBounceDurations("stats-press-release-durations", "Max Bounce Durations", selectedTests);
+        plotter.plotBounceDurations("stats-press-release-durations", "Bounce Durations (time to stable)", selectedTests);
         plotter.plotLongestPulseDurations("stats-press-release-longest-pulse-durations", "Longest Pulse Durations", selectedTests);
         plotter.plotTransitions("stats-press-release-transitions", "Transitions Per Activation", selectedTests);
         plotter.plotPulseWidth("stats-press-release-pulse-width", "Pulse Width", selectedTests);

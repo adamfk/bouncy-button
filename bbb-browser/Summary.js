@@ -139,8 +139,9 @@ class SummaryTableMaker {
      * @param {string} title
      * @param {SummaryStatLine} summaryStatLine
      * @param {boolean} asTime
+     * @param {string} [htmlTitle]
      */
-    addTable1Line(title, summaryStatLine, asTime) {
+    addTable1Line(title, summaryStatLine, asTime, htmlTitle) {
         let formatter;
         if (asTime) {
             formatter = (arg) => this.formatNsToUs(arg);
@@ -149,7 +150,7 @@ class SummaryTableMaker {
         }
 
         this.html += "<tr>\n";
-        this.html += `<td class='left'>${title}</td>\n`;
+        this.html += `<td class='left' title="${htmlTitle}">${title}</td>\n`;
         this.html += `<td class='duration'>${formatter(summaryStatLine.combined.max)}</td>`;
         this.html += `<td class='duration'>${formatter(summaryStatLine.combined.median)}</td>`;
         this.html += `<td class='duration press'>${formatter(summaryStatLine.press.max)}</td>`;
@@ -174,9 +175,9 @@ class SummaryTableMaker {
             "<th title='Release Median' class='duration release'>RL Med</th>\n" +
             "</tr>\n";
 
-        this.addTable1Line("Bounce Duration [us]", summary.bounceDurationNs, true);
-        this.addTable1Line("Longest Pulse [us]", summary.longestPulseNs, true);
-        this.addTable1Line("Transitions", summary.transitionsCount, false);
+        this.addTable1Line("Bounce Duration [us]", summary.bounceDurationNs, true, "The time it took for a button test's signal to reach a stable state.");
+        this.addTable1Line("Longest Pulse [us]", summary.longestPulseNs, true, "Longest uninterrupted pulse for a test.");
+        this.addTable1Line("Transitions", summary.transitionsCount, false, "The number of times a button test's signal transitioned between a digital 1 and 0.\nA perfect test would have a transition count of 1.");
 
         this.html += "</table>";
     }
