@@ -11,11 +11,13 @@ If you've already downloaded the `bb-benchmark` folder, you can skip this step, 
 <br>
 
 ## Wiring
-Connect one side of the button to ground and the other side to pin 4. Disconnect everything else from the Arduino.
+Connect one side of the button to ground and the other side to digital pin 4. Disconnect everything else from the Arduino.
+
+![image](https://github.com/adamfk/bouncy-button/assets/274012/ca100cc2-e02b-4991-8c26-8ee576f7d6b2)
 
 The program uses an internal pull-up resistor by default. You can send a serial command to disable the internal pull-up if you want to connect an external pull-up instead.
 
-![image](https://github.com/adamfk/bouncy-button/assets/274012/4330681e-52c2-424a-9798-b20fd8b10150)
+<!-- ![image](https://github.com/adamfk/bouncy-button/assets/274012/4330681e-52c2-424a-9798-b20fd8b10150) -->
 
 
 <br>
