@@ -17,7 +17,7 @@ If you just want to see the open source collection of button bounce data, you ca
 
 ## Main Reasons To Use
 1. Makes it really easy to collect and analyze switch bounce data.
-<br> -> Even better than fancy oscilliscopes (in many ways).
+<br> -> Even better than fancy oscilloscopes (in many ways).
 3. Great for experiments and curiosity about buttons/switches.
 4. Great for debounce algorithm authors and users interested in performance tuning.
 
@@ -28,7 +28,7 @@ We all know that a healthy button/switch will bounce less than 20ms, right? I us
 
 Most switches available for purchase don't have a bounce specification, but you can generally assume a `50ms debounce period` (works for about 95% of new switches).
 
-Beatiful old rustic switches definitely need to be measured though.
+Beautiful old rustic switches definitely need to be measured though.
 
 <br>
 
