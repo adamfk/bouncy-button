@@ -17,7 +17,7 @@ If you just want to see the open source collection of button bounce data, you ca
 
 ## Main Reasons To Use
 1. Makes it really easy to collect and analyze switch bounce data.
-<br> -> Even better than fancy oscilliscopes (in most ways).
+<br> -> Even better than fancy oscilliscopes (in many ways).
 3. Great for experiments and curiosity about buttons/switches.
 4. Great for debounce algorithm authors and users interested in performance tuning.
 
