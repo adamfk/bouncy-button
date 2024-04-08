@@ -24,9 +24,9 @@ If you just want to see the open source collection of button bounce data, you ca
 <br>
 
 ## 20 ms Bounce Or Less, Right?
-We all know that a healthy button/switch will bounce less than `20ms`, right? I used to think that. I learned that `20ms` number in high school and never really thought about it again. `20ms` always worked... until one day it didn't. At first I thought there was something wrong with my project, the wiring, or the button. I checked everything and swapped out the button with the spare I had (same model, never used) and it also would occasionally bounce well over `20ms`.
+We all know that a healthy button/switch will bounce less than 20ms, right? I used to think that. I learned that 20ms number in high school and never really thought about it again. 20ms always worked... until one day it didn't. At first I thought there was something wrong with my project, the wiring, or the button. I checked everything and swapped out the button with the spare I had (same model, never used) and it also would occasionally bounce well over 20ms.
 
-Most switches available for purchase don't have a bounce specification, but you can generally assume a <u> **50ms debounce period** </u> (works for about 95% of new switches).
+Most switches available for purchase don't have a bounce specification, but you can generally assume a `50ms debounce period` (works for about 95% of new switches).
 
 Beatiful old rustic switches definitely need to be measured though.
 
