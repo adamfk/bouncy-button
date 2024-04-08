@@ -1,5 +1,7 @@
 Documentation is a lot of work. Let me know if you find something confusing or have suggestions on how to improve.
 
+Have you already [watched the intro video](https://www.youtube.com/watch?v=jE4PtGqRFt0)?
+
 # More Info & Text Writeup
 - [Bouncy-Button-Benchmark](./bb-benchmark/README.md): the Arduino sketch that records & sends bounce data to a computer serial port.
 - [Bouncy-Button-Benchmark-Browser](./bbb-browser/README.md): a web page that graphs and analyzes the button bounce data.
