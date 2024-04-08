@@ -47,3 +47,10 @@ See the [bottom of this button test session](https://github.com/adamfk/bouncy-bu
 ![image](https://github.com/adamfk/bouncy-button-data/assets/274012/330320e9-8d55-476a-805a-062b67e47283)
 
 <br>
+
+
+## Introduction Video
+The below 12 minute video gives a brief demo, explains why it is better than oscilloscopes, and why you might want to use it.
+[https://www.youtube.com/watch?v=jE4PtGqRFt0](https://www.youtube.com/watch?v=jE4PtGqRFt0)
+
+[![image](https://github.com/adamfk/bouncy-button/assets/274012/b35e4142-4b1b-4baf-9d9a-2228b48307bd)](https://www.youtube.com/watch?v=jE4PtGqRFt0)
