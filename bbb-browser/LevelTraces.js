@@ -19,6 +19,7 @@ class LevelTraces {
         this.low.line.name = text;
         this.low.markers.name = text;
         this.low.durationMarkers.name = text;
+        this.low.line.showlegend = false;
     }
 
     getPlotlyTraces() {
