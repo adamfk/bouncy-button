@@ -249,18 +249,18 @@ class Periph {
         #elif defined(__AVR_ATmega328PB__)
             const bool skip_byte_6 = false;
         #else
-            print_str("Unsupported MCU");
+            print_str_anim("Unsupported MCU");
             return;
         #endif
 
-        print_str("0x");
+        print_str_anim("0x");
         for (uint8_t i = 0; i <= 9; i++)
         {
             if (i == 6 && skip_byte_6)
                 continue;
             uint8_t b = boot_signature_byte_get(0x0E + i);
             if (b < 0x10)
-                print_str("0");
+                print_str_anim("0");
             Serial.print(b, HEX); // doesn't print leading 0
         }
     }

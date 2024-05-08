@@ -1,6 +1,6 @@
 #pragma once
 
-#define VERSION_STR "0.4.5"
+#define VERSION_STR "0.4.6"
 
 // debug stuff
 #define DEBUG_TOGGLE_PIN_AT_SAMPLES  0
@@ -9,13 +9,29 @@
 
 #define ENTRIES_COUNT 350
 
-static const int16_t MS_TO_WAIT_FOR_STABLE = 500;
-static const int16_t MS_STREAM_TIMEOUT = 1000;
+#define MS_TO_WAIT_FOR_STABLE  500
+#define MS_STREAM_TIMEOUT     1000
 
 
 // Print stuff
-#define print_str(arg) Serial.print(F(arg))
-#define print_raw(arg) Serial.print(arg) // use for printing numbers and stuff
+extern int g_animation_delay_ms; // yeah, I'm lazy :)
+#define anim_delay()         delay(g_animation_delay_ms)
+#define print_str(arg)       Serial.print(F(arg))
+#define print_str_anim(arg)  print_str(arg); anim_delay()
+#define print_raw(arg)       Serial.print(arg) // use for printing numbers and stuff
+#define print_raw_anim(arg)  print_raw(arg); anim_delay()
+
+inline static void slow_animation_delay(void) {
+    g_animation_delay_ms = 32;
+}
+
+inline static void fast_animation_delay(void) {
+    g_animation_delay_ms = 16;
+}
+
+inline static void no_animation_delay(void) {
+    g_animation_delay_ms = 0;
+}
 
 #define X_STRINGIFY(x) #x
 #define STRINGIFY(x) X_STRINGIFY(x)

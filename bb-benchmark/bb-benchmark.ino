@@ -86,17 +86,18 @@ void setup() {
         pinMode(7, OUTPUT); // PORTD bit 7 is Arduino digital pin 7
     }
 
+    slow_animation_delay();
     // animate scrolling up to clear the screen
-    for (uint8_t i = 0; i < 50; i++) {
-        print_str("\n");
-        delay(10);
+    for (uint8_t i = 0; i < 4; i++) {
+        print_str_anim("\n");
     }
 
     Screen::print_splash_screen();
+    delay(1000);
 
     section.section_type = SectionType_NORMAL;
-    print_str("Assuming regular testing one transition at a time.\n");
-    print_str("Type '?'<enter> for menu options.\n");
+    print_str_anim("Assuming regular testing one transition at a time.\n");
+    print_str_anim("Type '?'<enter> for menu options.\n");
 }
 
 static void handle_commands_and_wait_for_stable() {
@@ -113,26 +114,29 @@ static void handle_commands_and_wait_for_stable() {
         cmd_handler.handle_any_user_command();
 
         if (stats_config.skip_wait_for_stable) {
-            print_str("Skipping wait for stable input.\n");
+            print_str_anim("Skipping wait for stable input.\n");
             stats_config.skip_wait_for_stable = false; // need to reset this for next time
             result = RecordDataResult_SUCCESS;
         } else {
-            print_str("Waiting for stable input...");
+            print_str_anim("Waiting for stable input...");
             result = DataRecorder::wait_for_stable_pin();
             if (result == RecordDataResult_SUCCESS) {
-                print_str(" good.\n");
+                print_str_anim(" good.\n");
             } else {
-                print_str(" interrupted for user input.\n");
+                print_str_anim(" interrupted for user input.\n");
             }
         }
     }
 }
 
 void loop() {
-    print_str("\n");
-    print_str("\n");
+    slow_animation_delay();
+
+    print_str_anim("\n");
+    print_str_anim("\n");
 
     handle_commands_and_wait_for_stable();
+    fast_animation_delay();
 
     // print state of switch
     if (INPUT_PIN_REGISTER & INPUT_PIN_MASK) {
@@ -141,16 +145,16 @@ void loop() {
         Screen::print_release_large();
     }
 
-    print_str("<test>\n"); // have to start outputting here for streaming mode to be easy to parse
+    print_str_anim("<test>\n"); // have to start outputting here for streaming mode to be easy to parse
 
     RecordDataResult result = DataRecorder::record_data();
 
     if (result == RecordDataResult_USER_INPUT) {
-        print_str("User input detected. Test delayed.\n");
-        print_str("</test>\n");
+        print_str_anim("User input detected. Test delayed.\n");
+        print_str_anim("</test>\n");
     } else {
         if (result == RecordDataResult_NOT_STABLE) {
-            print_str("<button_not_stable/>\n");
+            print_str_anim("<button_not_stable/>\n");
         }
 
         uint32_t duration_ns = ResultsPrinter::print_test_info(section, stats_config);
@@ -158,7 +162,7 @@ void loop() {
             ResultsPrinter::print_raw_logs(DataRecorder::g_entries, COUNT_OF(DataRecorder::g_entries));
         }
 
-        print_str("</test>\n");
+        print_str_anim("</test>\n");
         stats_config.total_count++;
         section.section_test_count++;
         stats_config.new_record_just_recorded = false;
@@ -168,14 +172,14 @@ void loop() {
             stats_config.old_max_duration_ns = stats_config.max_duration_ns;
             stats_config.max_duration_ns = duration_ns;
 
-            print_str("\n\n");
+            print_str_anim("\n\n");
             Screen::print_new_record_title();
-            print_str(" "); Screen::print_duration(stats_config.max_duration_ns);
+            print_str_anim(" "); Screen::print_duration(stats_config.max_duration_ns);
         }
 
         if (result == RecordDataResult_NOT_STABLE) {
             Screen::print_not_stable_large();
-            print_str("\n");
+            print_str_anim("\n");
         }
     }
 }

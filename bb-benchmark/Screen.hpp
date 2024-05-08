@@ -10,95 +10,95 @@ public:
 
 static void print_splash_screen(void) {
     // https://patorjk.com/software/taag/#p=display&h=1&v=1&f=Big%20Money-nw&t=Big%0ABouncy%0AButton%0ABenchmark
-    print_str("  $$$$$$$\\ \n");
-    print_str("  $$  __$$\\ \n");
-    print_str("  $$ |  $$ | $$$$$$\\  $$\\   $$\\ $$$$$$$\\   $$$$$$$\\ $$\\   $$\\ \n");
-    print_str("  $$$$$$$\\ |$$  __$$\\ $$ |  $$ |$$  __$$\\ $$  _____|$$ |  $$ | \n");
-    print_str("  $$  __$$\\ $$ /  $$ |$$ |  $$ |$$ |  $$ |$$ /      $$ |  $$ | \n");
-    print_str("  $$ |  $$ |$$ |  $$ |$$ |  $$ |$$ |  $$ |$$ |      $$ |  $$ | \n");
-    print_str("  $$$$$$$  |\\$$$$$$  |\\$$$$$$  |$$ |  $$ |\\$$$$$$$\\ \\$$$$$$$ | \n");
-    print_str("  \\_______/  \\______/  \\______/ \\__|  \\__| \\_______| \\____$$ | \n");
-    print_str("                                                    $$\\   $$ | \n");
-    print_str("  $$$$$$$\\              $$\\     $$\\                 \\$$$$$$  | \n");
-    print_str("  $$  __$$\\             $$ |    $$ |                 \\______/ \n");
-    print_str("  $$ |  $$ |$$\\   $$\\ $$$$$$\\ $$$$$$\\    $$$$$$\\  $$$$$$$\\ \n");
-    print_str("  $$$$$$$\\ |$$ |  $$ |\\_$$  _|\\_$$  _|  $$  __$$\\ $$  __$$\\ \n");
-    print_str("  $$  __$$\\ $$ |  $$ |  $$ |    $$ |    $$ /  $$ |$$ |  $$ | \n");
-    print_str("  $$ |  $$ |$$ |  $$ |  $$ |$$\\ $$ |$$\\ $$ |  $$ |$$ |  $$ | \n");
-    print_str("  $$$$$$$  |\\$$$$$$  |  \\$$$$  |\\$$$$  |\\$$$$$$  |$$ |  $$ | \n");
-    print_str("  \\_______/  \\______/    \\____/  \\____/  \\______/ \\__|  \\__| \n");
-    print_str("  $$$$$$$\\                                $$\\                                         $$\\ \n");
-    print_str("  $$  __$$\\                               $$ |                                        $$ | \n");
-    print_str("  $$ |  $$ | $$$$$$\\  $$$$$$$\\   $$$$$$$\\ $$$$$$$\\  $$$$$$\\$$$$\\   $$$$$$\\   $$$$$$\\  $$ |  $$\\ \n");
-    print_str("  $$$$$$$\\ |$$  __$$\\ $$  __$$\\ $$  _____|$$  __$$\\ $$  _$$  _$$\\  \\____$$\\ $$  __$$\\ $$ | $$  |\n");
-    print_str("  $$  __$$\\ $$$$$$$$ |$$ |  $$ |$$ /      $$ |  $$ |$$ / $$ / $$ | $$$$$$$ |$$ |  \\__|$$$$$$  / \n");
-    print_str("  $$ |  $$ |$$   ____|$$ |  $$ |$$ |      $$ |  $$ |$$ | $$ | $$ |$$  __$$ |$$ |      $$  _$$< \n");
-    print_str("  $$$$$$$  |\\$$$$$$$\\ $$ |  $$ |\\$$$$$$$\\ $$ |  $$ |$$ | $$ | $$ |\\$$$$$$$ |$$ |      $$ | \\$$\\ \n");
-    print_str("  \\_______/  \\_______|\\__|  \\__| \\_______|\\__|  \\__|\\__| \\__| \\__| \\_______|\\__|      \\__|  \\__|\n");
-    // print_str(" \n");
-    print_str("  <test_session_start/>\n");
-    print_str("  Bouncy Button Benchmark. Version " VERSION_STR ".\n");
-    print_str("  Project URL: https://github.com/adamfk/bouncy-button\n");
+    print_str_anim("  $$$$$$$\\ \n");
+    print_str_anim("  $$  __$$\\ \n");
+    print_str_anim("  $$ |  $$ | $$$$$$\\  $$\\   $$\\ $$$$$$$\\   $$$$$$$\\ $$\\   $$\\ \n");
+    print_str_anim("  $$$$$$$\\ |$$  __$$\\ $$ |  $$ |$$  __$$\\ $$  _____|$$ |  $$ | \n");
+    print_str_anim("  $$  __$$\\ $$ /  $$ |$$ |  $$ |$$ |  $$ |$$ /      $$ |  $$ | \n");
+    print_str_anim("  $$ |  $$ |$$ |  $$ |$$ |  $$ |$$ |  $$ |$$ |      $$ |  $$ | \n");
+    print_str_anim("  $$$$$$$  |\\$$$$$$  |\\$$$$$$  |$$ |  $$ |\\$$$$$$$\\ \\$$$$$$$ | \n");
+    print_str_anim("  \\_______/  \\______/  \\______/ \\__|  \\__| \\_______| \\____$$ | \n");
+    print_str_anim("                                                    $$\\   $$ | \n");
+    print_str_anim("  $$$$$$$\\              $$\\     $$\\                 \\$$$$$$  | \n");
+    print_str_anim("  $$  __$$\\             $$ |    $$ |                 \\______/ \n");
+    print_str_anim("  $$ |  $$ |$$\\   $$\\ $$$$$$\\ $$$$$$\\    $$$$$$\\  $$$$$$$\\ \n");
+    print_str_anim("  $$$$$$$\\ |$$ |  $$ |\\_$$  _|\\_$$  _|  $$  __$$\\ $$  __$$\\ \n");
+    print_str_anim("  $$  __$$\\ $$ |  $$ |  $$ |    $$ |    $$ /  $$ |$$ |  $$ | \n");
+    print_str_anim("  $$ |  $$ |$$ |  $$ |  $$ |$$\\ $$ |$$\\ $$ |  $$ |$$ |  $$ | \n");
+    print_str_anim("  $$$$$$$  |\\$$$$$$  |  \\$$$$  |\\$$$$  |\\$$$$$$  |$$ |  $$ | \n");
+    print_str_anim("  \\_______/  \\______/    \\____/  \\____/  \\______/ \\__|  \\__| \n");
+    print_str_anim("  $$$$$$$\\                                $$\\                                         $$\\ \n");
+    print_str_anim("  $$  __$$\\                               $$ |                                        $$ | \n");
+    print_str_anim("  $$ |  $$ | $$$$$$\\  $$$$$$$\\   $$$$$$$\\ $$$$$$$\\  $$$$$$\\$$$$\\   $$$$$$\\   $$$$$$\\  $$ |  $$\\ \n");
+    print_str_anim("  $$$$$$$\\ |$$  __$$\\ $$  __$$\\ $$  _____|$$  __$$\\ $$  _$$  _$$\\  \\____$$\\ $$  __$$\\ $$ | $$  |\n");
+    print_str_anim("  $$  __$$\\ $$$$$$$$ |$$ |  $$ |$$ /      $$ |  $$ |$$ / $$ / $$ | $$$$$$$ |$$ |  \\__|$$$$$$  / \n");
+    print_str_anim("  $$ |  $$ |$$   ____|$$ |  $$ |$$ |      $$ |  $$ |$$ | $$ | $$ |$$  __$$ |$$ |      $$  _$$< \n");
+    print_str_anim("  $$$$$$$  |\\$$$$$$$\\ $$ |  $$ |\\$$$$$$$\\ $$ |  $$ |$$ | $$ | $$ |\\$$$$$$$ |$$ |      $$ | \\$$\\ \n");
+    print_str_anim("  \\_______/  \\_______|\\__|  \\__| \\_______|\\__|  \\__|\\__| \\__| \\__| \\_______|\\__|      \\__|  \\__|\n");
+    // print_str_anim(" \n");
+    print_str_anim("  <test_session_start/>\n");
+    print_str_anim("  Bouncy Button Benchmark. Version " VERSION_STR ".\n");
+    print_str_anim("  Project URL: https://github.com/adamfk/bouncy-button\n");
 
-    print_str("  Arduino board: ");
+    print_str_anim("  Arduino board: ");
     #if defined(ARDUINO_AVR_UNO)
-        print_str("Uno");
+        print_str_anim("Uno");
     #elif defined(ARDUINO_AVR_NANO)
-        print_str("Nano");
+        print_str_anim("Nano");
     #else
-        print_str("???");
+        print_str_anim("???");
     #endif
-    print_str(", IDE: "); print_raw(ARDUINO); print_str(", GCC: "); print_str(__VERSION__); print_str("\n");
+    print_str_anim(", IDE: "); print_raw_anim(ARDUINO); print_str_anim(", GCC: "); print_str_anim(__VERSION__); print_str_anim("\n");
 
-    print_str("  MCU: "); 
-    print_str(STRINGIFY(__AVR_DEVICE_NAME__));
-    print_str(", MCU ID: ");
+    print_str_anim("  MCU: "); 
+    print_str_anim(STRINGIFY(__AVR_DEVICE_NAME__));
+    print_str_anim(", MCU ID: ");
     Periph::print_board_id();
-    print_str(", F_CPU: "); print_raw(F_CPU); print_str("\n");
-    print_str("\n");
+    print_str_anim(", F_CPU: "); print_raw_anim(F_CPU); print_str_anim("\n");
+    print_str_anim("\n");
 }
 
 static void print_press_large(void) {
     // https://patorjk.com/software/taag/#p=display&f=Big&t=PRESS!
-    print_str(" _____  _____  ______  _____ _____ _ \n");
-    print_str("|  __ \\|  __ \\|  ____|/ ____/ ____| |\n");
-    print_str("| |__) | |__) | |__  | (___| (___ | |\n");
-    print_str("|  ___/|  _  /|  __|  \\___ \\\\___ \\| |\n");
-    print_str("| |    | | \\ \\| |____ ____) |___) |_|\n");
-    print_str("|_|    |_|  \\_\\______|_____/_____/(_)\n");
-    print_str("Press the button (it is currently released == logic high)\n");    
+    print_str_anim(" _____  _____  ______  _____ _____ _ \n");
+    print_str_anim("|  __ \\|  __ \\|  ____|/ ____/ ____| |\n");
+    print_str_anim("| |__) | |__) | |__  | (___| (___ | |\n");
+    print_str_anim("|  ___/|  _  /|  __|  \\___ \\\\___ \\| |\n");
+    print_str_anim("| |    | | \\ \\| |____ ____) |___) |_|\n");
+    print_str_anim("|_|    |_|  \\_\\______|_____/_____/(_)\n");
+    print_str_anim("Press the button (it is currently released == logic high)\n");    
 }
 
 static void print_release_large(void) {
-    print_str("          _ \n");
-    print_str("         | | \n");
-    print_str(" _ __ ___| | ___  __ _ ___  ___ \n");
-    print_str("| '__/ _ \\ |/ _ \\/ _` / __|/ _ \\\n");
-    print_str("| | |  __/ |  __/ (_| \\__ \\  __/\n");
-    print_str("|_|  \\___|_|\\___|\\__,_|___/\\___|\n");
-    print_str("Release the button (it is currently pressed == logic low)\n");
+    print_str_anim("          _ \n");
+    print_str_anim("         | | \n");
+    print_str_anim(" _ __ ___| | ___  __ _ ___  ___ \n");
+    print_str_anim("| '__/ _ \\ |/ _ \\/ _` / __|/ _ \\\n");
+    print_str_anim("| | |  __/ |  __/ (_| \\__ \\  __/\n");
+    print_str_anim("|_|  \\___|_|\\___|\\__,_|___/\\___|\n");
+    print_str_anim("Release the button (it is currently pressed == logic low)\n");
 }
 
 static void print_new_record_title(void) {
-    print_str(" $$\\   $$\\ $$$$$$$$\\ $$\\      $$\\       $$$$$$$\\  $$$$$$$$\\  $$$$$$\\   $$$$$$\\  $$$$$$$\\  $$$$$$$\\  $$\\ \n");
-    print_str(" $$$\\  $$ |$$  _____|$$ | $\\  $$ |      $$  __$$\\ $$  _____|$$  __$$\\ $$  __$$\\ $$  __$$\\ $$  __$$\\ $$ |\n");
-    print_str(" $$$$\\ $$ |$$ |      $$ |$$$\\ $$ |      $$ |  $$ |$$ |      $$ /  \\__|$$ /  $$ |$$ |  $$ |$$ |  $$ |$$ |\n");
-    print_str(" $$ $$\\$$ |$$$$$\\    $$ $$ $$\\$$ |      $$$$$$$  |$$$$$\\    $$ |      $$ |  $$ |$$$$$$$  |$$ |  $$ |$$ |\n");
-    print_str(" $$ \\$$$$ |$$  __|   $$$$  _$$$$ |      $$  __$$< $$  __|   $$ |      $$ |  $$ |$$  __$$< $$ |  $$ |\\__|\n");
-    print_str(" $$ |\\$$$ |$$ |      $$$  / \\$$$ |      $$ |  $$ |$$ |      $$ |  $$\\ $$ |  $$ |$$ |  $$ |$$ |  $$ | \n");
-    print_str(" $$ | \\$$ |$$$$$$$$\\ $$  /   \\$$ |      $$ |  $$ |$$$$$$$$\\ \\$$$$$$  | $$$$$$  |$$ |  $$ |$$$$$$$  |$$\\ \n");
-    print_str(" \\__|  \\__|\\________|\\__/     \\__|      \\__|  \\__|\\________| \\______/  \\______/ \\__|  \\__|\\_______/ \\__|\n");
-    print_str(" New session record for max duration! Bounce them buttons.\n");
+    print_str_anim(" $$\\   $$\\ $$$$$$$$\\ $$\\      $$\\       $$$$$$$\\  $$$$$$$$\\  $$$$$$\\   $$$$$$\\  $$$$$$$\\  $$$$$$$\\  $$\\ \n");
+    print_str_anim(" $$$\\  $$ |$$  _____|$$ | $\\  $$ |      $$  __$$\\ $$  _____|$$  __$$\\ $$  __$$\\ $$  __$$\\ $$  __$$\\ $$ |\n");
+    print_str_anim(" $$$$\\ $$ |$$ |      $$ |$$$\\ $$ |      $$ |  $$ |$$ |      $$ /  \\__|$$ /  $$ |$$ |  $$ |$$ |  $$ |$$ |\n");
+    print_str_anim(" $$ $$\\$$ |$$$$$\\    $$ $$ $$\\$$ |      $$$$$$$  |$$$$$\\    $$ |      $$ |  $$ |$$$$$$$  |$$ |  $$ |$$ |\n");
+    print_str_anim(" $$ \\$$$$ |$$  __|   $$$$  _$$$$ |      $$  __$$< $$  __|   $$ |      $$ |  $$ |$$  __$$< $$ |  $$ |\\__|\n");
+    print_str_anim(" $$ |\\$$$ |$$ |      $$$  / \\$$$ |      $$ |  $$ |$$ |      $$ |  $$\\ $$ |  $$ |$$ |  $$ |$$ |  $$ | \n");
+    print_str_anim(" $$ | \\$$ |$$$$$$$$\\ $$  /   \\$$ |      $$ |  $$ |$$$$$$$$\\ \\$$$$$$  | $$$$$$  |$$ |  $$ |$$$$$$$  |$$\\ \n");
+    print_str_anim(" \\__|  \\__|\\________|\\__/     \\__|      \\__|  \\__|\\________| \\______/  \\______/ \\__|  \\__|\\_______/ \\__|\n");
+    print_str_anim(" New session record for max duration! Bounce them buttons.\n");
 }
 
 static void print_not_stable_large(void) {
-    print_str("  _   _  ____ _______       _        _     _        _ \n");
-    print_str(" | \\ | |/ __ \\__   __|     | |      | |   | |      | |\n");
-    print_str(" |  \\| | |  | | | |     ___| |_ __ _| |__ | | ___  | |\n");
-    print_str(" | . ` | |  | | | |    / __| __/ _` | '_ \\| |/ _ \\ | |\n");
-    print_str(" | |\\  | |__| | | |    \\__ \\ || (_| | |_) | |  __/ |_|\n");
-    print_str(" |_| \\_|\\____/  |_|    |___/\\__\\__,_|_.__/|_|\\___| (_)\n");
-    print_str(" Test did not end stable. Check your wiring? Demon button?\n");
+    print_str_anim("  _   _  ____ _______       _        _     _        _ \n");
+    print_str_anim(" | \\ | |/ __ \\__   __|     | |      | |   | |      | |\n");
+    print_str_anim(" |  \\| | |  | | | |     ___| |_ __ _| |__ | | ___  | |\n");
+    print_str_anim(" | . ` | |  | | | |    / __| __/ _` | '_ \\| |/ _ \\ | |\n");
+    print_str_anim(" | |\\  | |__| | | |    \\__ \\ || (_| | |_) | |  __/ |_|\n");
+    print_str_anim(" |_| \\_|\\____/  |_|    |___/\\__\\__,_|_.__/|_|\\___| (_)\n");
+    print_str_anim(" Test did not end stable. Check your wiring? Demon button?\n");
 }
 
 static bool print_std_section_type_id(SectionType type) {
@@ -118,6 +118,8 @@ static bool print_std_section_type_id(SectionType type) {
         case SectionType_SMK_WR: print_str("smk_wr"); break;
         default: print_str("???"); break;
     }
+
+    anim_delay();
 
     return success;
 }
@@ -140,6 +142,8 @@ static bool print_std_section_type_short(SectionType type) {
         default: print_str("???"); break;
     }
 
+    anim_delay();
+
     return success;
 }
 
@@ -161,12 +165,14 @@ static bool print_std_section_type_with_meta(SectionType type) {
         default: print_str("???"); break;
     }
 
+    // anim_delay(); // too much delay
+
     return success;
 }
 
 static void print_section(Section section) {
     if (section.section_type == SectionType_CUSTOM) {
-        print_raw(section.custom_id);
+        print_raw_anim(section.custom_id);
     } else {
         print_std_section_type_short(section.section_type);
     }
@@ -178,11 +184,11 @@ static void print_duration(uint32_t duration_ns) {
     uint32_t nanos = duration_ns - (millis * 1000000) - (micros * 1000);
 
     if (millis > 0) {
-        print_raw(millis); print_str(" ms, "); print_raw(micros); print_str(" us, "); print_raw(nanos); print_str(" ns\n");
+        print_raw_anim(millis); print_str_anim(" ms, "); print_raw_anim(micros); print_str_anim(" us, "); print_raw_anim(nanos); print_str_anim(" ns\n");
     } else if (micros > 0) {
-        print_raw(micros); print_str(" us, "); print_raw(nanos); print_str(" ns\n");
+        print_raw_anim(micros); print_str_anim(" us, "); print_raw_anim(nanos); print_str_anim(" ns\n");
     } else {
-        print_raw(nanos); print_str(" ns\n");
+        print_raw_anim(nanos); print_str_anim(" ns\n");
     }
 }
 };
