@@ -1,5 +1,11 @@
 Turn a regular Arduino Uno into a powerful button bounce analysis tool (detects 62 nanosecond pulses).
 
+You can check out the analysis tool online (on a desktop): [https://adamfk.github.io/bouncy-button/bbb-browser/gui.html](https://adamfk.github.io/bouncy-button/bbb-browser/gui.html)
+
+<!-- [![image](https://github.com/adamfk/bouncy-button/assets/274012/146a55c6-3897-4910-81a9-e4a0240c7b05)](https://adamfk.github.io/bouncy-button/bbb-browser/gui.html) -->
+
+![quick-graph-then-zom](https://github.com/adamfk/bouncy-button/assets/274012/32b80c43-9965-4b8a-8767-32367a44eef9)
+
 I initially started exploring switch bounce with an oscilloscope, but it was just too burdensome to collect enough data for experiments and there was no easy way to analyze and share the data. After a few days of using my oscilloscope, I decided to try and see what a humble Arduino could do because they are already so prevalent, easy to use and low cost. Great for students and hobbyists.
 
 I'm very happy with the results! We can now:
@@ -12,13 +18,7 @@ Special thanks to [Jack Ganssle](https://www.ganssle.com/debouncing.htm) (no aff
 
 ---
 
-You can check out the analysis tool online (on a desktop): [https://adamfk.github.io/bouncy-button/bbb-browser/gui.html](https://adamfk.github.io/bouncy-button/bbb-browser/gui.html)
 
-<!-- [![image](https://github.com/adamfk/bouncy-button/assets/274012/146a55c6-3897-4910-81a9-e4a0240c7b05)](https://adamfk.github.io/bouncy-button/bbb-browser/gui.html) -->
-
-![quick-graph-then-zom](https://github.com/adamfk/bouncy-button/assets/274012/32b80c43-9965-4b8a-8767-32367a44eef9)
-
-<br>
 
 ## Open Source Database
 If you just want to see the open source collection of button bounce data, you can find it at the companion [bouncy-button-data](https://github.com/adamfk/bouncy-button-data/) repo.
